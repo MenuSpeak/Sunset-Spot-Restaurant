@@ -1,0 +1,2133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sunset Spot Restaurant</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        
+        /* Tabs Navigation - Category Buttons */
+        .tabs-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .tabs-scroll {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px 0;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 14px;
+            color: var(--muted);
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            margin: 2px;
+        }
+
+
+
+
+
+        
+
+.tabs-container {
+  text-align: center;
+}
+
+.tab-row {
+  margin-bottom: 10px;
+}
+
+.tab {
+  margin: 4px;
+}
+
+
+
+
+
+        
+        
+        .tab.active {
+            background: linear-gradient(90deg, var(--gold1), var(--gold2));
+            color: #0b0b0d;
+            border: none;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+        }
+
+        /* Hover effect for better UX */
+        .tab:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .tabs-scroll {
+                justify-content: flex-start;
+            }
+
+            .tab {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            .tab {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 767px) {
+            .tab {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .tabs-scroll {
+                justify-content: center;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .tab {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .tabs-scroll {
+                gap: 5px;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        :root {
+            --bg: #0b0b0d;
+            --surface: #0f1114;
+            --muted: #9aa0a6;
+            --gold1: #d4af37;
+            --gold2: #ffcc66;
+            --accent: linear-gradient(90deg, var(--gold1), var(--gold2));
+            --glass: rgba(255, 255, 255, 0.03);
+            --card-radius: 16px;
+            --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+            --glass-strong: rgba(255, 255, 255, 0.04);
+            --maxw: 1200px;
+            --gap: 20px;
+            --ff-heading: 'Playfair Display', serif;
+            --ff-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            --orange: #ff9800;
+            --green: #4CAF50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-size: 16px;
+        }
+
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background image layer */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('bg.png') no-repeat center center/cover;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        body {
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(212, 175, 55, 0.06), transparent 6%),
+                radial-gradient(1000px 500px at 95% 90%, rgba(255, 204, 102, 0.04), transparent 8%),
+                var(--bg);
+            color: #e8e6e3;
+            font-family: var(--ff-ui);
+            -webkit-font-smoothing: antialiased;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--maxw);
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+  
+        /* Cafe Header - Original Style */
+        .cafe-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .cafe-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--gold1);
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+            line-height: 1;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .cafe-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--gold1);
+        }
+
+        .cafe-subtitle {
+            font-size: 1.2rem;
+            color: var(--orange);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .location-info {
+            font-size: 1rem;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .location-text {
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .address {
+            color: var(--green);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .mobile-numbers {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .veg-nonveg {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .veg,
+        .nonveg {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .veg {
+            color: #2e7d32;
+            background: rgba(46, 125, 50, 0.1);
+        }
+
+        .nonveg {
+            color: #c62828;
+            background: rgba(198, 40, 40, 0.1);
+        }
+
+        .veg:hover,
+        .nonveg:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .symbol {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .veg .symbol {
+            background: #4caf50;
+            border: 2px solid #2e7d32;
+        }
+
+        .nonveg .symbol {
+            background: #f44336;
+            border: 2px solid #c62828;
+        }
+
+        /* Location Link Section - Added at bottom */
+        .location-link-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            text-align: center;
+        }
+
+        .location-link-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .location-link-header h3 {
+            font-family: var(--ff-heading);
+            color: var(--gold2);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .location-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--gold1);
+        }
+
+        .map-link-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, var(--gold1), var(--gold2));
+            color: #0b0b0d;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .map-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .map-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Header and Navigation */
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .brand {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold1), var(--gold2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b0b0d;
+            font-family: var(--ff-heading);
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 6px 22px rgba(212, 175, 55, 0.12);
+            flex-shrink: 0;
+        }
+
+        .brand-text h1 {
+            margin: 0;
+            font-family: var(--ff-heading);
+            font-size: 20px;
+            letter-spacing: 0.6px;
+        }
+
+        .brand-text p {
+            margin: 2px 0 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .search-container {
+            background: var(--glass);
+            backdrop-filter: blur(6px);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: 0;
+            outline: 0;
+            color: inherit;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* Tabs Navigation */
+        .tabs-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .tabs-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .tabs-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 14px;
+            color: var(--muted);
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tab.active {
+            background: var(--accent);
+            color: #0b0b0d;
+            border: none;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 24px rgba(2, 6, 23, 0.6);
+            transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.28s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(2, 6, 23, 0.7);
+        }
+
+        .card-header {
+            display: flex;
+            gap: 12px;
+        }
+
+        .thumb {
+            width: 180px;
+            height: 180px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .card:hover .thumb img {
+            transform: scale(1.06);
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .dish {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            font-family: var(--ff-heading);
+            line-height: 1.3;
+        }
+
+        .desc {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--gold2);
+            flex-shrink: 0;
+        }
+
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 11px;
+            color: var(--muted);
+            background: transparent;
+        }
+
+        /* Add to Cart Button */
+        .btn-primary {
+            background: linear-gradient(90deg, var(--gold1), var(--gold2));
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #0b0b0d;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+            font-size: 13px;
+            width: auto;
+            min-width: 100px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        /* Button Animation Effects */
+        .btn-primary.adding {
+            animation: addPulse 0.6s ease;
+        }
+
+        .btn-primary.added {
+            background: linear-gradient(90deg, #10b981, #059669);
+            animation: successPulse 0.8s ease;
+        }
+
+        @keyframes addPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+            }
+        }
+
+        @keyframes successPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+            }
+
+            25% {
+                transform: scale(1.08);
+                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+            }
+
+            50% {
+                transform: scale(0.95);
+                box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            }
+
+            75% {
+                transform: scale(1.03);
+                box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+            }
+        }
+
+        /* Cart Styles */
+        .cart-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .cart-button {
+            background: linear-gradient(90deg, var(--gold1), var(--gold2));
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+            cursor: pointer;
+            position: relative;
+            border: none;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 13, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 16px;
+        }
+
+        .cart-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-content {
+            background: var(--surface);
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--card-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 12px;
+        }
+
+        .cart-title {
+            font-family: var(--ff-heading);
+            font-size: 22px;
+            margin: 0;
+            color: var(--gold2);
+        }
+
+        .close-cart {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            font-size: 15px;
+        }
+
+        .item-price {
+            color: var(--gold2);
+            font-size: 14px;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .quantity {
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: transparent;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            margin-left: 12px;
+            font-size: 18px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: var(--muted);
+            padding: 20px 0;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .total-amount {
+            color: var(--gold2);
+        }
+
+        .cart-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        /* Add Another Item Button */
+        .btn-add-another {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), rgba(255, 204, 102, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 14px;
+            border-radius: 12px;
+            color: var(--gold2);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add-another:hover {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), rgba(255, 204, 102, 0.15));
+            border-color: var(--gold1);
+            transform: translateY(-2px);
+        }
+
+        .btn-add-another svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 3;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            border: none;
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .btn-clear {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 12px 14px;
+            border-radius: 12px;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Delivery Options in Cart */
+        .delivery-options {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.015);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .options-title {
+            font-family: var(--ff-heading);
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--gold2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .options-title svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .delivery-option-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .option-btn:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .option-btn.active {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), rgba(255, 204, 102, 0.1));
+            border-color: var(--gold1);
+            color: var(--gold2);
+        }
+
+        .option-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Delivery Forms */
+        .delivery-form {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .delivery-form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold2);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Customer Details Summary */
+        .customer-details-summary {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: none;
+        }
+
+        .customer-details-summary.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: var(--gold2);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-title svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .summary-details {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .summary-details div {
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            color: var(--muted);
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin-top: 20px;
+        }
+
+        /* Gold Line */
+        .gold-line {
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--gold1), var(--gold2));
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.08);
+            margin: 8px 0 16px 0;
+        }
+
+        /* Tablet and Desktop Styles */
+        @media (min-width: 768px) {
+            body {
+                padding: 24px;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+
+            .header {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .brand {
+                flex: 1;
+            }
+
+            .search-container {
+                width: auto;
+                min-width: 300px;
+            }
+
+            .tabs-container {
+                grid-column: 1 / -1;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cart-actions {
+                flex-direction: row;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .cart-container,
+            .cart-modal,
+            .btn-ghost {
+                display: none;  
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Cafe Header - Original Style -->
+        <div class="cafe-header">
+<img src="logo.jpeg" alt="Logo" style="width:400px; height:auto; display:block; margin:0 auto;">
+            <div class="cafe-name">SUNSET SPOT RESTAURANT</div>
+            <div class="cafe-subtitle">location:</div>
+            <div class="location-info">
+                <div class="location-text">At saralpool, post .saral ,tal.alibag, dist.raigad Pincode 402201</div>
+                <div class="address"></div>
+                            <div class="cafe-subtitle"></div>
+                <div class="mobile-numbers">Mo no. +91 99604 65169</div>
+            </div>
+            <div class="veg-nonveg">
+                <div class="veg">
+                    <span class="symbol"></span>
+                    <span>VEG</span>
+                </div>
+                <div class="nonveg">
+                    <span class="symbol"></span>
+                    <span>NON VEG</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <main class="menu">
+            <div class="menu-head">
+                <div class="controls">
+                    <div class="search" role="search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                            <path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,0.6)" stroke-width="1.6"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                            <circle cx="11" cy="11" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.6"
+                                stroke-linecap="round" stroke-linejoin="round"></circle>
+                        </svg>
+                        <input id="search" placeholder="Search dishes, ingredients..." />
+                    </div>
+
+
+
+   <div class="tabs-scroll">
+     
+<button class="tab active" data-cat="all">All</button>
+<button class="tab" data-cat="BREAKFAST">Breakfast</button>
+<button class="tab" data-cat="VEG">Veg</button>
+<button class="tab" data-cat="NON_VEG">Non Veg</button>
+<button class="tab" data-cat="TANDOORI">Tandoori</button>
+<button class="tab" data-cat="TANDOOR_STARTER_VEG">Tandoor Starter Veg</button>
+<button class="tab" data-cat="KUCH_KHEEMA_HO_JAYE">Kuch Kheema Ho Jaye</button>
+<button class="tab" data-cat="EGG_ITEMS">Egg Items</button>
+<button class="tab" data-cat="TANDOOR_STARTER_NON_VEG">Tandoor Starter Non Veg</button>
+<button class="tab" data-cat="SOUP_VEG">Soup Veg</button>
+<button class="tab" data-cat="STARTER_CHINESE_VEG">Starter Chinese Veg</button>
+<button class="tab" data-cat="SOUP_NON_VEG">Soup Non Veg</button>
+<button class="tab" data-cat="STARTER_CHINESE_NON_VEG">Starter Chinese Non Veg</button>
+<button class="tab" data-cat="MUTTON_KA_KHAJANA">Mutton Ka Khajana</button>
+<button class="tab" data-cat="FISH_KA_STARTER">Fish Ka Starter</button>
+<button class="tab" data-cat="FISH_CURRY_MASALA">Fish Curry Masala</button>
+<button class="tab" data-cat="THALI_KI_TARAF">Thali Ki Taraf</button>
+<button class="tab" data-cat="NON_VEG_GRAVY">Non Veg Gravy</button>
+<button class="tab" data-cat="VEG_GRAVY">Veg Gravy</button>
+<button class="tab" data-cat="ROTI_BASKET">Roti Basket</button>
+<button class="tab" data-cat="WATER_COLD_DRINKS">Water & Cold Drinks</button>
+<button class="tab" data-cat="KUCH_MEETHA_HO_JAYE">Kuch Meetha Ho Jaye</button>
+<button class="tab" data-cat="BIRYANI_KA_SWAAD">Biryani Ka Swaad</button>
+<button class="tab" data-cat="NON_VEG_BIRYANI">Non Veg Biryani</button>
+<button class="tab" data-cat="DAL_KI_DUNIYA">Dal Ki Duniya</button>
+<button class="tab" data-cat="RICE_ITEMS">Rice Items</button>
+<button class="tab" data-cat="KHANE_KE_SATH">Khane Ke Sath</button>
+<button class="tab" data-cat="CHINESE_VEG_RICE">Chinese Veg Rice</button>
+<button class="tab" data-cat="CHINESE_VEG_NOODLES">Chinese Veg Noodles</button>
+<button class="tab" data-cat="CHINESE_NON_VEG_RICE">Chinese Non Veg Rice</button>
+<button class="tab" data-cat="CHINESE_NON_VEG_NOODLES">Chinese Non Veg Noodles</button>
+
+       
+                    </div>
+                    
+                </div>
+            </div>
+
+            <section class="menu-grid" id="menuGrid">
+                <!-- Cards injected by JS -->
+            </section>
+        </main>
+
+        <!-- Location Link Section - Added at bottom -->
+        <div class="location-link-section">
+            <div class="location-link-header">
+                <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <h3>Find Us on Google Maps</h3>
+            </div>
+            <div class="map-link-container">
+                <a href="https://maps.app.goo.gl/yi3FF7ukGmTwqcpd6" target="_blank" class="map-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Open in Google Maps
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Button -->
+    <div class="cart-container">
+        <button class="cart-button" id="cartButton">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3 class="cart-title">Your Order</h3>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+
+            <!-- Delivery Options -->
+            <div class="delivery-options">
+                <h4 class="options-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Select Delivery Type
+                </h4>
+
+                <div class="delivery-option-buttons">
+                    <button class="option-btn active" id="restaurantOption"
+                        onclick="selectDeliveryOption('restaurant')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9 12v12M15 12v12M5 12l-2 9h18l-2-9M5 12V8c0-1.105.895-2 2-2h10c1.105 0 2 .895 2 2v4" />
+                            <circle cx="12" cy="6" r="2" />
+                        </svg>
+                        Restaurant
+                    </button>
+                    <button class="option-btn" id="homeDeliveryOption" onclick="selectDeliveryOption('home')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Home Delivery
+                    </button>
+                </div>
+
+                <!-- Restaurant Form -->
+                <div class="delivery-form active" id="restaurantForm">
+                    <div class="form-group">
+                        <label class="form-label" for="tableNumber">Table Number</label>
+                        <input type="text" id="tableNumber" class="form-input"
+                            placeholder="Enter your table number (e.g., Table 5, Booth 2)" />
+                    </div>
+                </div>
+
+                <!-- Home Delivery Form -->
+                <div class="delivery-form" id="homeDeliveryForm">
+                    <div class="form-group">
+                        <label class="form-label" for="customerName">Full Name</label>
+                        <input type="text" id="customerName" class="form-input" placeholder="Enter your full name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="customerMobile">Mobile Number</label>
+                        <input type="tel" id="customerMobile" class="form-input"
+                            placeholder="Enter your mobile number" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="customerAddress">Delivery Address</label>
+                        <textarea id="customerAddress" class="form-input" placeholder="Enter your complete address"
+                            rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Details Summary -->
+            <div class="customer-details-summary" id="customerDetailsSummary">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be inserted here -->
+                <div class="cart-empty" id="cartEmpty">Your cart is empty</div>
+            </div>
+
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount" id="cartTotal">₹0</span>
+            </div>
+
+            <div class="cart-actions">
+                <button class="btn-add-another" id="addAnotherItem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Add another Item
+                </button>
+                <button class="btn-clear" id="clearCart">Clear Cart</button>
+                <button class="btn-whatsapp" id="whatsappOrder">  
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.864 3.488" />
+                    </svg>
+                    Order via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu Data - FIXED VERSION
+        const data = 
+
+// const updatedMenuItems =
+    
+   
+[
+  { "id": 1, "cat": "BREAKFAST", "name": "Tea", "price": "20.00 RS", "desc": "Hot cup of tea", "tags": ["Veg"], "img": "img/tea.jpeg" },
+  { "id": 2, "cat": "BREAKFAST", "name": "Coffee", "price": "25.00 RS", "desc": "Hot cup of coffee", "tags": ["Veg"], "img": "img/coffee.jpeg" },
+  { "id": 3, "cat": "BREAKFAST", "name": "Kandapoha", "price": "50.00 RS", "desc": "Authentic Maharashtrian Kandapoha", "tags": ["Veg"], "img": "img/kandapoha.jpeg" },
+  { "id": 4, "cat": "BREAKFAST", "name": "Upama", "price": "50.00 RS", "desc": "Delicious Upama", "tags": ["Veg"], "img": "img/upama.jpeg" },
+  { "id": 5, "cat": "BREAKFAST", "name": "Shira", "price": "60.00 RS", "desc": "Sweet and tasty Shira", "tags": ["Veg"], "img": "img/shira.jpeg" },
+  { "id": 6, "cat": "BREAKFAST", "name": "Omlet Paav", "price": "60.00 RS", "desc": "Egg Omlet served with Paav", "tags": ["Non-Veg"], "img": "img/omlet_paav.jpeg" },
+  { "id": 7, "cat": "BREAKFAST", "name": "Bhurji Paav", "price": "60.00 RS", "desc": "Egg Bhurji served with Paav", "tags": ["Non-Veg"], "img": "img/bhurji_paav.jpeg" },
+  { "id": 8, "cat": "BREAKFAST", "name": "Misal Paav", "price": "60.00 RS", "desc": "Spicy Misal served with Paav", "tags": ["Veg"], "img": "img/misal_paav.jpeg" },
+  { "id": 9, "cat": "BREAKFAST", "name": "Kanda Bhaji", "price": "60.00 RS", "desc": "Crispy Onion Pakodas (Kanda Bhaji)", "tags": ["Veg"], "img": "img/kanda_bhaji.jpeg" },
+  { "id": 10, "cat": "BREAKFAST", "name": "Mix Bhaji", "price": "50.00 RS", "desc": "Mixed Vegetable Pakodas", "tags": ["Veg"], "img": "img/mix_bhaji.jpeg" },
+  { "id": 11, "cat": "BREAKFAST", "name": "Mutton Khima Bhakari", "price": "180.00 RS", "desc": "Spicy Mutton Khima served with Bhakari", "tags": ["Non-Veg"], "img": "img/mutton_khima_bhakari.jpeg" },
+
+  
+  { "id": 12, "cat": "VEG", "name": "Tea", "price": "20.00 RS", "desc": "Hot cup of tea", "tags": ["Veg"], "img": "img/tea.jpeg" },
+  { "id": 13, "cat": "VEG", "name": "Vada Paav", "price": "40.00 RS", "desc": "1 Plate Vada Paav", "tags": ["Veg"], "img": "img/vada_paav.jpeg" },
+  { "id": 14, "cat": "VEG", "name": "Coffee", "price": "30.00 RS", "desc": "Hot cup of coffee", "tags": ["Veg"], "img": "img/coffee.jpeg" },
+  { "id": 15, "cat": "VEG", "name": "Kandapoha", "price": "50.00 RS", "desc": "Authentic Maharashtrian Kandapoha", "tags": ["Veg"], "img": "img/kandapoha.jpeg" },
+  { "id": 16, "cat": "VEG", "name": "Upama", "price": "50.00 RS", "desc": "Delicious Upama", "tags": ["Veg"], "img": "img/upama.jpeg" },
+  { "id": 17, "cat": "VEG", "name": "Bread Toast Butter (Sada)", "price": "60.00 RS", "desc": "Plain bread toast with butter", "tags": ["Veg"], "img": "img/bread_toast_butter.jpeg" },
+  { "id": 18, "cat": "VEG", "name": "Shira", "price": "60.00 RS", "desc": "Sweet and tasty Shira", "tags": ["Veg"], "img": "img/shira.jpeg" },
+  { "id": 19, "cat": "VEG", "name": "Misal Paav", "price": "60.00 RS", "desc": "Spicy Misal served with Paav", "tags": ["Veg"], "img": "img/misal_paav.jpeg" },
+  { "id": 20, "cat": "VEG", "name": "Kanda Bhaji", "price": "50.00 RS", "desc": "Crispy Onion Pakodas", "tags": ["Veg"], "img": "img/kanda_bhaji.jpeg" },
+  { "id": 21, "cat": "VEG", "name": "Mix Bhaji", "price": "50.00 RS", "desc": "Mixed Vegetable Pakodas", "tags": ["Veg"], "img": "img/mix_bhaji.jpeg" },
+  { "id": 22, "cat": "VEG", "name": "Sandwich", "price": "60.00 RS", "desc": "Veg Sandwich", "tags": ["Veg"], "img": "img/sandwich.jpeg" },
+  { "id": 23, "cat": "VEG", "name": "Veg Momos", "price": "80.00 RS", "desc": "Steamed Veg Momos", "tags": ["Veg"], "img": "img/veg_momos.jpeg" },
+  { "id": 24, "cat": "VEG", "name": "Dosa", "price": "60.00 RS", "desc": "Plain Dosa", "tags": ["Veg"], "img": "img/dosa.jpeg" },
+  { "id": 25, "cat": "VEG", "name": "Pizza", "price": "80.00 - 150.00 RS", "desc": "Veg Pizza (Regular/Large)", "tags": ["Veg"], "img": "img/pizza.jpeg" },
+  { "id": 26, "cat": "VEG", "name": "Masala Dosa", "price": "80.00 RS", "desc": "Crispy Masala Dosa", "tags": ["Veg"], "img": "img/masala_dosa.jpeg" },
+  { "id": 27, "cat": "VEG", "name": "Idli Sambar", "price": "60.00 RS", "desc": "Soft Idli served with Sambar", "tags": ["Veg"], "img": "img/idli_sambar.jpeg" },
+  { "id": 28, "cat": "VEG", "name": "Mendu Vada", "price": "60.00 RS", "desc": "Crispy Mendu Vada with Sambar", "tags": ["Veg"], "img": "img/mendu_vada.jpeg" },
+  { "id": 29, "cat": "VEG", "name": "Bread Pakoda", "price": "50.00 RS", "desc": "Deep fried Bread Pakoda", "tags": ["Veg"], "img": "img/bread_pakoda.jpeg" },
+  { "id": 30, "cat": "NON_VEG", "name": "Bhurji Paav", "price": "80.00 RS", "desc": "Egg Bhurji served with Paav", "tags": ["Non-Veg"], "img": "img/bhurji_paav.jpeg" },
+  { "id": 31, "cat": "NON_VEG", "name": "Mutton Kheema", "price": "180.00 RS", "desc": "Spicy Mutton Kheema", "tags": ["Non-Veg"], "img": "img/mutton_kheema.jpeg" },
+  { "id": 32, "cat": "NON_VEG", "name": "Chicken Shawarma", "price": "80.00 - 100.00 RS", "desc": "Delicious Chicken Shawarma", "tags": ["Non-Veg"], "img": "img/chicken_shawarma.jpeg" },
+  { "id": 33, "cat": "NON_VEG", "name": "Momos Chicken", "price": "100.00 RS", "desc": "Steamed Chicken Momos", "tags": ["Non-Veg"], "img": "img/chicken_momos.jpeg" },
+  { "id": 34, "cat": "NON_VEG", "name": "Chicken Kheema", "price": "150.00 RS", "desc": "Spicy Chicken Kheema", "tags": ["Non-Veg"], "img": "img/chicken_kheema.jpeg" },
+  { "id": 35, "cat": "NON_VEG", "name": "Omelette Paav", "price": "60.00 RS", "desc": "Egg Omelette served with Paav", "tags": ["Non-Veg"], "img": "img/omelette_paav.jpeg" },
+  { "id": 36, "cat": "NON_VEG", "name": "Omelette", "price": "50.00 RS", "desc": "Plain Egg Omelette", "tags": ["Non-Veg"], "img": "img/omelette.jpeg" },
+  { "id": 37, "cat": "NON_VEG", "name": "Chicken Pizza", "price": "100.00 - 200.00 RS", "desc": "Chicken Pizza (Regular/Large)", "tags": ["Non-Veg"], "img": "img/chicken_pizza.jpeg" },
+
+
+  { "id": 38, "cat": "TANDOORI", "name": "Chicken Rashmi Kabab", "price": "350.00 RS", "desc": "Delicious Chicken Rashmi Kabab", "tags": ["Non-Veg"], "img": "img/chicken_rashmi_kabab.jpeg" },
+  { "id": 39, "cat": "TANDOORI", "name": "Chicken Rosali Kabab", "price": "450.00 RS", "desc": "Delicious Chicken Rosali Kabab", "tags": ["Non-Veg"], "img": "img/chicken_rosali_kabab.jpeg" },
+
+  
+  { "id": 40, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Tikka (8 Pieces)", "price": "260.00 RS", "desc": "Marinated Paneer Tikka", "tags": ["Veg"], "img": "img/paneer_tikka.jpeg" },
+  { "id": 41, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Pahadi Tikka (8 Pieces)", "price": "280.00 RS", "desc": "Green herb marinated Paneer Pahadi Tikka", "tags": ["Veg"], "img": "img/paneer_pahadi_tikka.jpeg" },
+  { "id": 42, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Malai Tikka (8 Pieces)", "price": "300.00 RS", "desc": "Creamy Paneer Malai Tikka", "tags": ["Veg"], "img": "img/paneer_malai_tikka.jpeg" },
+  { "id": 43, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Pudina Tikka (8 Pieces)", "price": "280.00 RS", "desc": "Mint flavored Paneer Pudina Tikka", "tags": ["Veg"], "img": "img/paneer_pudina_tikka.jpeg" },
+  { "id": 44, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Nawabi Tikka (8 Pieces)", "price": "320.00 RS", "desc": "Rich Paneer Nawabi Tikka", "tags": ["Veg"], "img": "img/paneer_nawabi_tikka.jpeg" },
+  { "id": 45, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Cheesy Tikka", "price": "340.00 RS", "desc": "Cheese loaded Paneer Tikka", "tags": ["Veg"], "img": "img/paneer_cheesy_tikka.jpeg" },
+  { "id": 46, "cat": "TANDOOR_STARTER_VEG", "name": "Paneer Hilltop Tikka (8 Pieces)", "price": "350.00 RS", "desc": "Special Paneer Hilltop Tikka", "tags": ["Veg"], "img": "img/paneer_hilltop_tikka.jpeg" },
+  
+  { "id": 47, "cat": "KUCH_KHEEMA_HO_JAYE", "name": "Mutton Kheema", "price": "250.00 RS", "desc": "Spicy minced Mutton Kheema", "tags": ["Non-Veg"], "img": "img/mutton_kheema.jpeg" },
+  { "id": 48, "cat": "KUCH_KHEEMA_HO_JAYE", "name": "Chicken Kheema", "price": "200.00 RS", "desc": "Spicy minced Chicken Kheema", "tags": ["Non-Veg"], "img": "img/chicken_kheema.jpeg" },
+  { "id": 49, "cat": "KUCH_KHEEMA_HO_JAYE", "name": "Soyabean Keema", "price": "180.00 RS", "desc": "Vegetarian Soyabean Keema", "tags": ["Veg"], "img": "img/soyabean_keema.jpeg" },
+  { "id": 50, "cat": "KUCH_KHEEMA_HO_JAYE", "name": "Mashroom Keema", "price": "200.00 RS", "desc": "Delicious Mashroom Keema", "tags": ["Veg"], "img": "img/mashroom_keema.jpeg" },
+  { "id": 51, "cat": "KUCH_KHEEMA_HO_JAYE", "name": "Paav (Per Pieces)", "price": "5.00 RS", "desc": "Fresh Paav", "tags": ["Veg"], "img": "img/paav.jpeg" },
+
+  { "id": 52, "cat": "EGG_ITEMS", "name": "Egg Akuri / Ghotala", "price": "220.00 RS", "desc": "Special Egg Akuri or Ghotala", "tags": ["Non-Veg"], "img": "img/egg_akuri_ghotala.jpeg" },
+  { "id": 53, "cat": "EGG_ITEMS", "name": "Egg Masala", "price": "200.00 RS", "desc": "Spicy Egg Masala", "tags": ["Non-Veg"], "img": "img/egg_masala.jpeg" },
+  { "id": 54, "cat": "EGG_ITEMS", "name": "Masala Omelette", "price": "100.00 RS", "desc": "Spicy Masala Omelette", "tags": ["Non-Veg"], "img": "img/masala_omelette.jpeg" },
+  { "id": 55, "cat": "EGG_ITEMS", "name": "Sada Chinese Omlate", "price": "70.00 RS", "desc": "Plain Chinese style omelette", "tags": ["Non-Veg"], "img": "img/sada_chinese_omlate.jpeg" },
+  { "id": 56, "cat": "EGG_ITEMS", "name": "Half Fry (2 Pieces)", "price": "70.00 RS", "desc": "Sunny side up Half Fry", "tags": ["Non-Veg"], "img": "img/half_fry.jpeg" },
+  { "id": 57, "cat": "EGG_ITEMS", "name": "Egg Bhurji", "price": "140.00 RS", "desc": "Scrambled Egg Bhurji", "tags": ["Non-Veg"], "img": "img/egg_bhurji.jpeg" },
+  { "id": 58, "cat": "EGG_ITEMS", "name": "Boiled Egg (4 Pieces)", "price": "100.00 RS", "desc": "Plain Boiled Eggs", "tags": ["Non-Veg"], "img": "img/boiled_egg.jpeg" },
+  { "id": 59, "cat": "EGG_ITEMS", "name": "Sada Omelette", "price": "50.00 RS", "desc": "Plain Omelette", "tags": ["Non-Veg"], "img": "img/sada_omelette.jpeg" },
+  { "id": 60, "cat": "EGG_ITEMS", "name": "Chicken Omelette", "price": "120.00 RS", "desc": "Omelette stuffed with chicken", "tags": ["Non-Veg"], "img": "img/chicken_omelette.jpeg" },
+
+  { "id": 61, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Chilli Milli (10 Pieces)", "price": "370.00 RS", "desc": "Chicken Chilli Milli", "tags": ["Non-Veg"], "img": "img/chi_chilli_milli.jpeg" },
+  { "id": 62, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Alishan Kabab (8 Pieces)", "price": "400.00 RS", "desc": "Chicken Alishan Kabab", "tags": ["Non-Veg"], "img": "img/chi_alishan_kabab.jpeg" },
+  { "id": 63, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Tandoori Half (4 Pieces)", "price": "250.00 RS", "desc": "Half portion of Chicken Tandoori", "tags": ["Non-Veg"], "img": "img/chi_tandoori_half.jpeg" },
+  { "id": 64, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Tandoori Full (8 Pieces)", "price": "480.00 RS", "desc": "Full portion of Chicken Tandoori", "tags": ["Non-Veg"], "img": "img/chi_tandoori_full.jpeg" },
+  { "id": 65, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Tikka (8 Pieces)", "price": "299.00 RS", "desc": "Classic Chicken Tikka", "tags": ["Non-Veg"], "img": "img/chi_tikka.jpeg" },
+  { "id": 66, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Malai Tikka (8 Pieces)", "price": "320.00 RS", "desc": "Creamy Chicken Malai Tikka", "tags": ["Non-Veg"], "img": "img/chi_malai_tikka.jpeg" },
+  { "id": 67, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Kalameeri Tikka (8 Pieces)", "price": "340.00 RS", "desc": "Black pepper Chicken Kalameeri Tikka", "tags": ["Non-Veg"], "img": "img/chi_kalameeri_tikka.jpeg" },
+  { "id": 68, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Lahsuni Tikka (8 Pieces)", "price": "340.00 RS", "desc": "Garlic flavored Chicken Lahsuni Tikka", "tags": ["Non-Veg"], "img": "img/chi_lahsuni_tikka.jpeg" },
+  { "id": 69, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Pahadi Tikka (8 Pieces)", "price": "340.00 RS", "desc": "Green herb Chicken Pahadi Tikka", "tags": ["Non-Veg"], "img": "img/chi_pahadi_tikka.jpeg" },
+  { "id": 70, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Seeka Kabab (8 Pieces)", "price": "380.00 RS", "desc": "Chicken Seeka Kabab", "tags": ["Non-Veg"], "img": "img/chi_seeka_kabab.jpeg" },
+  { "id": 71, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Banjara Tikka (8 Pieces)", "price": "360.00 RS", "desc": "Spicy Chicken Banjara Tikka", "tags": ["Non-Veg"], "img": "img/chi_banjara_tikka.jpeg" },
+  { "id": 72, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Angara Tikka (8 Pieces)", "price": "360.00 RS", "desc": "Fiery Chicken Angara Tikka", "tags": ["Non-Veg"], "img": "img/chi_angara_tikka.jpeg" },
+  { "id": 73, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Chi. Dilkush Kabab (8 Pieces)", "price": "400.00 RS", "desc": "Chicken Dilkush Kabab", "tags": ["Non-Veg"], "img": "img/chi_dilkush_kabab.jpeg" },
+  { "id": 74, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Mutton Sheeka Kabab (6 Pieces)", "price": "440.00 RS", "desc": "Mutton Sheeka Kabab", "tags": ["Non-Veg"], "img": "img/mutton_sheeka_kabab.jpeg" },
+  { "id": 75, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Tangdi Kabab", "price": "350.00 RS", "desc": "Chicken Tangdi Kabab", "tags": ["Non-Veg"], "img": "img/tangdi_kabab.jpeg" },
+  { "id": 76, "cat": "TANDOOR_STARTER_NON_VEG", "name": "Tandoori Platter", "price": "1500.00 RS", "desc": "Assorted Tandoori Platter", "tags": ["Non-Veg"], "img": "img/tandoori_platter.jpeg" },
+    
+
+  { "id": 77, "cat": "SOUP_VEG", "name": "Manchow Soup", "price": "70.00 - 120.00 RS", "desc": "Veg Manchow Soup", "tags": ["Veg"], "img": "img/veg_manchow_soup.jpeg" },
+  { "id": 78, "cat": "SOUP_VEG", "name": "Hot & Sour Soup", "price": "70.00 - 120.00 RS", "desc": "Veg Hot & Sour Soup", "tags": ["Veg"], "img": "img/veg_hot_sour_soup.jpeg" },
+  { "id": 79, "cat": "SOUP_VEG", "name": "Sweet Corn Soup", "price": "70.00 - 120.00 RS", "desc": "Veg Sweet Corn Soup", "tags": ["Veg"], "img": "img/veg_sweet_corn_soup.jpeg" },
+  { "id": 80, "cat": "SOUP_VEG", "name": "Clear Soup", "price": "60.00 - 100.00 RS", "desc": "Veg Clear Soup", "tags": ["Veg"], "img": "img/veg_clear_soup.jpeg" },
+  { "id": 81, "cat": "SOUP_VEG", "name": "Cream of Tomato Soup", "price": "120.00 RS", "desc": "Creamy Tomato Soup", "tags": ["Veg"], "img": "img/cream_of_tomato_soup.jpeg" },
+  { "id": 82, "cat": "SOUP_VEG", "name": "Lemon-Coriander Soup", "price": "120.00 RS", "desc": "Refreshing Lemon-Coriander Soup", "tags": ["Veg"], "img": "img/lemon_coriander_soup.jpeg" },
+  { "id": 83, "cat": "SOUP_VEG", "name": "Brocali Soup", "price": "150.00 RS", "desc": "Healthy Broccoli Soup", "tags": ["Veg"], "img": "img/brocali_soup.jpeg" },
+  { "id": 84, "cat": "SOUP_VEG", "name": "Mashroom Soup", "price": "100.00 - 150.00 RS", "desc": "Special Mashroom Soup", "tags": ["Veg"], "img": "img/mashroom_soup.jpeg" },
+
+  { "id": 85, "cat": "STARTER_CHINESE_VEG", "name": "French Fries", "price": "140.00 RS", "desc": "Classic French Fries", "tags": ["Veg"], "img": "img/french_fries.jpeg" },
+  { "id": 86, "cat": "STARTER_CHINESE_VEG", "name": "Peri Peri French Fries", "price": "160.00 RS", "desc": "Spicy Peri Peri French Fries", "tags": ["Veg"], "img": "img/peri_peri_french_fries.jpeg" },
+  { "id": 87, "cat": "STARTER_CHINESE_VEG", "name": "Mashroom Chilly (Dry/Gravy)", "price": "260.00 RS", "desc": "Mashroom Chilly", "tags": ["Veg"], "img": "img/mashroom_chilly.jpeg" },
+  { "id": 88, "cat": "STARTER_CHINESE_VEG", "name": "Veg. Crispy", "price": "250.00 RS", "desc": "Crispy Veg Starter", "tags": ["Veg"], "img": "img/veg_crispy.jpeg" },
+  { "id": 89, "cat": "STARTER_CHINESE_VEG", "name": "Veg. Momos Chilli (8 Pieces)", "price": "240.00 RS", "desc": "Spicy Veg Momos Chilli", "tags": ["Veg"], "img": "img/veg_momos_chilli.jpeg" },
+  { "id": 90, "cat": "STARTER_CHINESE_VEG", "name": "Paneer Momos Chilli (8 Pieces)", "price": "260.00 RS", "desc": "Spicy Paneer Momos Chilli", "tags": ["Veg"], "img": "img/paneer_momos_chilli.jpeg" },
+  { "id": 91, "cat": "STARTER_CHINESE_VEG", "name": "Veg. 65", "price": "200.00 RS", "desc": "Classic Veg 65", "tags": ["Veg"], "img": "img/veg_65.jpeg" },
+  { "id": 92, "cat": "STARTER_CHINESE_VEG", "name": "Veg. Spring Roll", "price": "200.00 RS", "desc": "Crispy Veg Spring Roll", "tags": ["Veg"], "img": "img/veg_spring_roll.jpeg" },
+  { "id": 93, "cat": "STARTER_CHINESE_VEG", "name": "Veg. Manchurian (Dry/Gravy)", "price": "200.00 RS", "desc": "Veg Manchurian", "tags": ["Veg"], "img": "img/veg_manchurian.jpeg" },
+  { "id": 94, "cat": "STARTER_CHINESE_VEG", "name": "Soyabean Chilli (8 Pieces)", "price": "220.00 RS", "desc": "Soyabean Chilli", "tags": ["Veg"], "img": "img/soyabean_chilli.jpeg" },
+  { "id": 95, "cat": "STARTER_CHINESE_VEG", "name": "Paneer Chilli", "price": "250.00 RS", "desc": "Spicy Paneer Chilli", "tags": ["Veg"], "img": "img/paneer_chilli.jpeg" },
+  { "id": 96, "cat": "STARTER_CHINESE_VEG", "name": "Paneer Green Chilli", "price": "260.00 RS", "desc": "Paneer in Green Chilli Sauce", "tags": ["Veg"], "img": "img/paneer_green_chilli.jpeg" },
+  { "id": 97, "cat": "STARTER_CHINESE_VEG", "name": "Paneer Spring Roll", "price": "240.00 RS", "desc": "Crispy Paneer Spring Roll", "tags": ["Veg"], "img": "img/paneer_spring_roll.jpeg" },
+  { "id": 98, "cat": "STARTER_CHINESE_VEG", "name": "Paneer 65 (8 Pieces)", "price": "240.00 RS", "desc": "Paneer 65 Starter", "tags": ["Veg"], "img": "img/paneer_65.jpeg" },
+  { "id": 99, "cat": "STARTER_CHINESE_VEG", "name": "Mashroom Momos Chilli (8 Pic)", "price": "260.00 RS", "desc": "Mashroom Momos Chilli", "tags": ["Veg"], "img": "img/mashroom_momos_chilli.jpeg" },
+  { "id": 100, "cat": "STARTER_CHINESE_VEG", "name": "Paneer Crispy", "price": "250.00 RS", "desc": "Crispy Paneer Starter", "tags": ["Veg"], "img": "img/paneer_crispy.jpeg" },
+
+  { "id": 101, "cat": "SOUP_NON_VEG", "name": "Egg Soup", "price": "80.00 - 130.00 RS", "desc": "Special Egg Soup", "tags": ["Non-Veg"], "img": "img/egg_soup.jpeg" },
+  { "id": 102, "cat": "SOUP_NON_VEG", "name": "Chi. Manchow Soup", "price": "80.00 - 130.00 RS", "desc": "Chicken Manchow Soup", "tags": ["Non-Veg"], "img": "img/chi_manchow_soup.jpeg" },
+  { "id": 103, "cat": "SOUP_NON_VEG", "name": "Chi. Hot & Sour Soup", "price": "80.00 - 130.00 RS", "desc": "Chicken Hot & Sour Soup", "tags": ["Non-Veg"], "img": "img/chi_hot_sour_soup.jpeg" },
+  { "id": 104, "cat": "SOUP_NON_VEG", "name": "Chi. Clear Soup", "price": "70.00 - 120.00 RS", "desc": "Chicken Clear Soup", "tags": ["Non-Veg"], "img": "img/chi_clear_soup.jpeg" },
+  { "id": 105, "cat": "SOUP_NON_VEG", "name": "Chi. Sweet Corn Soup", "price": "80.00 - 120.00 RS", "desc": "Chicken Sweet Corn Soup", "tags": ["Non-Veg"], "img": "img/chi_sweet_corn_soup.jpeg" },
+  { "id": 106, "cat": "SOUP_NON_VEG", "name": "Chi. Coriander Soup", "price": "100.00 - 140.00 RS", "desc": "Chicken Coriander Soup", "tags": ["Non-Veg"], "img": "img/chi_coriander_soup.jpeg" },
+  { "id": 107, "cat": "SOUP_NON_VEG", "name": "Mutton Soup", "price": "150.00 RS", "desc": "Mutton Soup", "tags": ["Non-Veg"], "img": "img/mutton_soup.jpeg" },
+  { "id": 108, "cat": "SOUP_NON_VEG", "name": "Mutton Paya Soup", "price": "180.00 RS", "desc": "Traditional Mutton Paya Soup", "tags": ["Non-Veg"], "img": "img/mutton_paya_soup.jpeg" },
+  { "id": 109, "cat": "SOUP_NON_VEG", "name": "Chi. Noodless Soup", "price": "150.00 RS", "desc": "Chicken Noodle Soup", "tags": ["Non-Veg"], "img": "img/chi_noodless_soup.jpeg" },
+
+  { "id": 110, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Lolipop (8 Pieces)", "price": "280.00 RS", "desc": "Chicken Lolipop", "tags": ["Non-Veg"], "img": "img/chi_lolipop.jpeg" },
+  { "id": 111, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Spring Roll", "price": "300.00 RS", "desc": "Chicken Spring Roll", "tags": ["Non-Veg"], "img": "img/chi_spring_roll.jpeg" },
+  { "id": 112, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chicken chees boll soup", "price": "200.00 RS", "desc": "Chicken Cheese Ball Soup", "tags": ["Non-Veg"], "img": "img/chicken_chees_boll_soup.jpeg" },
+  { "id": 113, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Crispy", "price": "300.00 RS", "desc": "Crispy Chicken Starter", "tags": ["Non-Veg"], "img": "img/chi_crispy.jpeg" },
+  { "id": 114, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Big Lolipop (8 Piis)", "price": "320.00 RS", "desc": "Big Chicken Lolipop", "tags": ["Non-Veg"], "img": "img/chi_big_lolipop.jpeg" },
+  { "id": 115, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Shewen", "price": "300.00 RS", "desc": "Chicken Shezwan Starter", "tags": ["Non-Veg"], "img": "img/chi_shewen.jpeg" },
+  { "id": 116, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Honey Chilli", "price": "300.00 RS", "desc": "Chicken Honey Chilli", "tags": ["Non-Veg"], "img": "img/chi_honey_chilli.jpeg" },
+  { "id": 117, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Chilli (Dry/Gravy)", "price": "280.00 RS", "desc": "Classic Chicken Chilli", "tags": ["Non-Veg"], "img": "img/chi_chilli.jpeg" },
+  { "id": 118, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Green Chilli (Dry/Gravy)", "price": "300.00 RS", "desc": "Chicken Green Chilli", "tags": ["Non-Veg"], "img": "img/chi_green_chilli.jpeg" },
+  { "id": 119, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Manchurian (Dry/Gravy)", "price": "300.00 RS", "desc": "Chicken Manchurian", "tags": ["Non-Veg"], "img": "img/chi_manchurian.jpeg" },
+  { "id": 120, "cat": "STARTER_CHINESE_NON_VEG", "name": "Prawns Chilli", "price": "400.00 RS", "desc": "Spicy Prawns Chilli", "tags": ["Non-Veg"], "img": "img/prawns_chilli.jpeg" },
+  { "id": 121, "cat": "STARTER_CHINESE_NON_VEG", "name": "Bassa (Fish) Chilli", "price": "350.00 RS", "desc": "Basa Fish Chilli", "tags": ["Non-Veg"], "img": "img/bassa_fish_chilli.jpeg" },
+  { "id": 122, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Momos Chilli", "price": "280.00 RS", "desc": "Chicken Momos Chilli", "tags": ["Non-Veg"], "img": "img/chi_momos_chilli.jpeg" },
+  { "id": 123, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Salty", "price": "300.00 RS", "desc": "Chicken Salty Starter", "tags": ["Non-Veg"], "img": "img/chi_salty.jpeg" },
+  { "id": 124, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Shezwan Steak", "price": "300.00 RS", "desc": "Chicken Shezwan Steak", "tags": ["Non-Veg"], "img": "img/chi_shezwan_steak.jpeg" },
+  { "id": 125, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. Dragon", "price": "350.00 RS", "desc": "Chicken Dragon Starter", "tags": ["Non-Veg"], "img": "img/chi_dragon.jpeg" },
+  { "id": 126, "cat": "STARTER_CHINESE_NON_VEG", "name": "BBQ Lolipop", "price": "350.00 RS", "desc": "BBQ Chicken Lolipop", "tags": ["Non-Veg"], "img": "img/bbq_lolipop.jpeg" },
+  { "id": 127, "cat": "STARTER_CHINESE_NON_VEG", "name": "Chi. 65", "price": "280.00 RS", "desc": "Chicken 65", "tags": ["Non-Veg"], "img": "img/chi_65.jpeg" },
+  { "id": 128, "cat": "STARTER_CHINESE_NON_VEG", "name": "Prawn 65", "price": "350.00 RS", "desc": "Prawn 65", "tags": ["Non-Veg"], "img": "img/prawn_65.jpeg" },
+  { "id": 129, "cat": "STARTER_CHINESE_NON_VEG", "name": "Tangdi Kabab", "price": "350.00 RS", "desc": "Tangdi Kabab", "tags": ["Non-Veg"], "img": "img/tangdi_kabab.jpeg" },
+
+  
+  { "id": 130, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Maharaja", "price": "777.00 RS", "desc": "Special Mutton Maharaja", "tags": ["Non-Veg"], "img": "img/mutton_maharaja.jpeg" },
+  { "id": 131, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Masala", "price": "333.00 RS", "desc": "Spicy Mutton Masala", "tags": ["Non-Veg"], "img": "img/mutton_masala.jpeg" },
+  { "id": 132, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Suka", "price": "333.00 RS", "desc": "Dry Mutton Suka", "tags": ["Non-Veg"], "img": "img/mutton_suka.jpeg" },
+  { "id": 133, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Lapeta", "price": "399.00 RS", "desc": "Thick gravy Mutton Lapeta", "tags": ["Non-Veg"], "img": "img/mutton_lapeta.jpeg" },
+  { "id": 134, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Kolhapuri (Spicy)", "price": "366.00 RS", "desc": "Very spicy Mutton Kolhapuri", "tags": ["Non-Veg"], "img": "img/mutton_kolhapuri.jpeg" },
+  { "id": 135, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Handi (H) (6 Piece)", "price": "411.00 RS", "desc": "Half Mutton Handi", "tags": ["Non-Veg"], "img": "img/mutton_handi_half.jpeg" },
+  { "id": 136, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Handi (F) (12 Piece)", "price": "755.00 RS", "desc": "Full Mutton Handi", "tags": ["Non-Veg"], "img": "img/mutton_handi_full.jpeg" },
+  { "id": 137, "cat": "MUTTON_KA_KHAJANA", "name": "Kala Mutton", "price": "444.00 - 777.00 RS", "desc": "Traditional black gravy Kala Mutton (Half/Full)", "tags": ["Non-Veg"], "img": "img/kala_mutton.jpeg" },
+  { "id": 138, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Mautar Gravy", "price": "500.00 RS", "desc": "Mutton Mautar Gravy", "tags": ["Non-Veg"], "img": "img/mutton_mautar_gravy.jpeg" },
+  { "id": 139, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Hyderabadi", "price": "399.00 RS", "desc": "Rich Mutton Hyderabadi", "tags": ["Non-Veg"], "img": "img/mutton_hyderabadi.jpeg" },
+  { "id": 140, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Kadai", "price": "399.00 RS", "desc": "Mutton Kadai cooked with bell peppers", "tags": ["Non-Veg"], "img": "img/mutton_kadai.jpeg" },
+  { "id": 141, "cat": "MUTTON_KA_KHAJANA", "name": "Mutton Mundi Masala Fry", "price": "222.00 RS", "desc": "Mutton Mundi Masala Fry", "tags": ["Non-Veg"], "img": "img/mutton_mundi_masala_fry.jpeg" },
+  { "id": 142, "cat": "MUTTON_KA_KHAJANA", "name": "Kalaje Fry", "price": "222.00 RS", "desc": "Mutton Liver (Kaleji) Fry", "tags": ["Non-Veg"], "img": "img/kalaje_fry.jpeg" },
+  { "id": 143, "cat": "MUTTON_KA_KHAJANA", "name": "Vajeri Fry", "price": "199.00 RS", "desc": "Spicy Vajeri Fry", "tags": ["Non-Veg"], "img": "img/vajeri_fry.jpeg" },
+  { "id": 144, "cat": "MUTTON_KA_KHAJANA", "name": "Bheja Fry", "price": "199.00 RS", "desc": "Mutton Brain (Bheja) Fry", "tags": ["Non-Veg"], "img": "img/bheja_fry.jpeg" },
+  { "id": 145, "cat": "MUTTON_KA_KHAJANA", "name": "Paya Masala", "price": "199.00 RS", "desc": "Mutton Trotters (Paya) Masala", "tags": ["Non-Veg"], "img": "img/paya_masala.jpeg" },
+
+  { "id": 146, "cat": "FISH_KA_STARTER", "name": "Pomfret Tava Fry", "price": "399.00 RS", "desc": "Fresh Pomfret Tava Fry", "tags": ["Non-Veg"], "img": "img/pomfret_tava_fry.jpeg" },
+  { "id": 147, "cat": "FISH_KA_STARTER", "name": "Prawns Tandoori (10 Piece)", "price": "399.00 RS", "desc": "Tandoori grilled Prawns", "tags": ["Non-Veg"], "img": "img/prawns_tandoori.jpeg" },
+  { "id": 148, "cat": "FISH_KA_STARTER", "name": "Pomfret Tandoori (1 Piece)", "price": "420.00 RS", "desc": "Tandoori grilled Pomfret", "tags": ["Non-Veg"], "img": "img/pomfret_tandoori.jpeg" },
+  { "id": 149, "cat": "FISH_KA_STARTER", "name": "Surmai Tava Fry (1 Piece)", "price": "399.00 RS", "desc": "Surmai fish Tava Fry", "tags": ["Non-Veg"], "img": "img/surmai_tava_fry.jpeg" },
+  { "id": 150, "cat": "FISH_KA_STARTER", "name": "Bangada Fry (2 Piece)", "price": "199.00 RS", "desc": "Crispy Bangada fish Fry", "tags": ["Non-Veg"], "img": "img/bangada_fry.jpeg" },
+  { "id": 151, "cat": "FISH_KA_STARTER", "name": "Prawns Koliwada (10 Piece)", "price": "399.00 RS", "desc": "Spicy Prawns Koliwada style", "tags": ["Non-Veg"], "img": "img/prawns_koliwada.jpeg" },
+
+  { "id": 152, "cat": "FISH_CURRY_MASALA", "name": "Prawns Masala / Curry", "price": "299.00 RS", "desc": "Prawns Masala or Curry", "tags": ["Non-Veg"], "img": "img/prawns_masala.jpeg" },
+  { "id": 153, "cat": "FISH_CURRY_MASALA", "name": "Pomfret Masala / Curry", "price": "333.00 RS", "desc": "Pomfret Masala or Curry", "tags": ["Non-Veg"], "img": "img/pomfret_masala.jpeg" },
+  { "id": 154, "cat": "FISH_CURRY_MASALA", "name": "Surmai Masala / Curry", "price": "300.00 RS", "desc": "Surmai Masala or Curry", "tags": ["Non-Veg"], "img": "img/surmai_masala.jpeg" },
+  { "id": 155, "cat": "FISH_CURRY_MASALA", "name": "Bassa Masala / Curry", "price": "299.00 RS", "desc": "Basa Fish Masala or Curry", "tags": ["Non-Veg"], "img": "img/bassa_masala.jpeg" },
+  { "id": 156, "cat": "FISH_CURRY_MASALA", "name": "Ravas Masala / Curry", "price": "330.00 RS", "desc": "Ravas Fish Masala or Curry", "tags": ["Non-Veg"], "img": "img/ravas_masala.jpeg" },
+  { "id": 157, "cat": "FISH_CURRY_MASALA", "name": "Crab Masala / Curry", "price": "330.00 RS", "desc": "Crab Masala or Curry", "tags": ["Non-Veg"], "img": "img/crab_masala.jpeg" },
+  { "id": 158, "cat": "FISH_CURRY_MASALA", "name": "Kalva Fry", "price": "333.00 RS", "desc": "Kalva Fry", "tags": ["Non-Veg"], "img": "img/kalva_fry.jpeg" },
+  { "id": 159, "cat": "FISH_CURRY_MASALA", "name": "Bangada Curry", "price": "220.00 RS", "desc": "Authentic Bangada Fish Curry", "tags": ["Non-Veg"], "img": "img/bangada_curry.jpeg" },
+
+  { "id": 160, "cat": "THALI_KI_TARAF", "name": "Veg. Thali", "price": "150.00 RS", "desc": "Complete Veg Thali", "tags": ["Veg"], "img": "img/veg_thali.jpeg" },
+  { "id": 161, "cat": "THALI_KI_TARAF", "name": "Chicken Thali", "price": "180.00 RS", "desc": "Complete Chicken Thali", "tags": ["Non-Veg"], "img": "img/chicken_thali.jpeg" },
+  { "id": 162, "cat": "THALI_KI_TARAF", "name": "Mutton Thali", "price": "250.00 RS", "desc": "Complete Mutton Thali", "tags": ["Non-Veg"], "img": "img/mutton_thali.jpeg" },
+  { "id": 163, "cat": "THALI_KI_TARAF", "name": "Prawns Thali", "price": "333.00 RS", "desc": "Complete Prawns Thali", "tags": ["Non-Veg"], "img": "img/prawns_thali.jpeg" },
+  { "id": 164, "cat": "THALI_KI_TARAF", "name": "Pomfret Thali", "price": "399.00 RS", "desc": "Complete Pomfret Thali", "tags": ["Non-Veg"], "img": "img/pomfret_thali.jpeg" },
+  { "id": 165, "cat": "THALI_KI_TARAF", "name": "Surmai Thali", "price": "399.00 RS", "desc": "Complete Surmai Thali", "tags": ["Non-Veg"], "img": "img/surmai_thali.jpeg" },
+  { "id": 166, "cat": "THALI_KI_TARAF", "name": "Ravas Thali", "price": "350.00 RS", "desc": "Complete Ravas Thali", "tags": ["Non-Veg"], "img": "img/ravas_thali.jpeg" },
+  { "id": 167, "cat": "THALI_KI_TARAF", "name": "Bangada Thali", "price": "220.00 RS", "desc": "Complete Bangada Thali", "tags": ["Non-Veg"], "img": "img/bangada_thali.jpeg" },
+  { "id": 168, "cat": "THALI_KI_TARAF", "name": "Egg Thali", "price": "199.00 RS", "desc": "Complete Egg Thali", "tags": ["Non-Veg"], "img": "img/egg_thali.jpeg" },
+
+   
+  { "id": 169, "cat": "NON_VEG_GRAVY", "name": "Mutton Master Gravy", "price": "500.00 RS", "desc": "Special Mutton Master Gravy", "tags": ["Non-Veg"], "img": "img/mutton_master_gravy.jpeg" },
+  { "id": 170, "cat": "NON_VEG_GRAVY", "name": "Chicken Master Gravy", "price": "300.00 RS", "desc": "Special Chicken Master Gravy", "tags": ["Non-Veg"], "img": "img/chicken_master_gravy.jpeg" },
+  { "id": 171, "cat": "NON_VEG_GRAVY", "name": "Chi. Masala", "price": "250.00 RS", "desc": "Spicy Chicken Masala", "tags": ["Non-Veg"], "img": "img/chi_masala.jpeg" },
+  { "id": 172, "cat": "NON_VEG_GRAVY", "name": "Chi. Kolhapuri (Spicy)", "price": "288.00 RS", "desc": "Authentic Spicy Chicken Kolhapuri", "tags": ["Non-Veg"], "img": "img/chi_kolhapuri.jpeg" },
+  { "id": 173, "cat": "NON_VEG_GRAVY", "name": "Chi. Angara", "price": "300.00 RS", "desc": "Smoky Chicken Angara", "tags": ["Non-Veg"], "img": "img/chi_angara.jpeg" },
+  { "id": 174, "cat": "NON_VEG_GRAVY", "name": "Chi. Tikka Masala", "price": "300.00 RS", "desc": "Chicken Tikka in rich masala gravy", "tags": ["Non-Veg"], "img": "img/chi_tikka_masala.jpeg" },
+  { "id": 175, "cat": "NON_VEG_GRAVY", "name": "Chi. Patiyala", "price": "333.00 RS", "desc": "Delicious Chicken Patiyala", "tags": ["Non-Veg"], "img": "img/chi_patiyala.jpeg" },
+  { "id": 176, "cat": "NON_VEG_GRAVY", "name": "Chi. Hyderabadi", "price": "333.00 RS", "desc": "Rich Chicken Hyderabadi gravy", "tags": ["Non-Veg"], "img": "img/chi_hyderabadi.jpeg" },
+  { "id": 177, "cat": "NON_VEG_GRAVY", "name": "Chi. Bhuna Masala", "price": "322.00 RS", "desc": "Roasted Chicken Bhuna Masala", "tags": ["Non-Veg"], "img": "img/chi_bhuna_masala.jpeg" },
+  { "id": 178, "cat": "NON_VEG_GRAVY", "name": "Chi. Mughlai", "price": "330.00 RS", "desc": "Creamy Chicken Mughlai", "tags": ["Non-Veg"], "img": "img/chi_mughlai.jpeg" },
+  { "id": 179, "cat": "NON_VEG_GRAVY", "name": "Chi. Kadhai", "price": "300.00 RS", "desc": "Chicken cooked in traditional Kadhai", "tags": ["Non-Veg"], "img": "img/chi_kadhai.jpeg" },
+  { "id": 180, "cat": "NON_VEG_GRAVY", "name": "Chi. Lapeta", "price": "333.00 RS", "desc": "Thick gravy Chicken Lapeta", "tags": ["Non-Veg"], "img": "img/chi_lapeta.jpeg" },
+  { "id": 181, "cat": "NON_VEG_GRAVY", "name": "Butter Chicken", "price": "333.00 RS", "desc": "Classic Butter Chicken", "tags": ["Non-Veg"], "img": "img/butter_chicken.jpeg" },
+  { "id": 182, "cat": "NON_VEG_GRAVY", "name": "Chi. Handi (H) (6 Piece)", "price": "350.00 RS", "desc": "Half portion of Chicken Handi", "tags": ["Non-Veg"], "img": "img/chi_handi_half.jpeg" },
+  { "id": 183, "cat": "NON_VEG_GRAVY", "name": "Chi. Handi (F) (12 Piece)", "price": "499.00 RS", "desc": "Full portion of Chicken Handi", "tags": ["Non-Veg"], "img": "img/chi_handi_full.jpeg" },
+  { "id": 184, "cat": "NON_VEG_GRAVY", "name": "Special Chicken Sunset", "price": "755.00 RS", "desc": "Restaurant Special Chicken Sunset", "tags": ["Non-Veg"], "img": "img/special_chicken_sunset.jpeg" },
+  { "id": 185, "cat": "NON_VEG_GRAVY", "name": "Chicken Sukka", "price": "299.00 RS", "desc": "Dry and spicy Chicken Sukka", "tags": ["Non-Veg"], "img": "img/chicken_sukka.jpeg" },
+  { "id": 186, "cat": "NON_VEG_GRAVY", "name": "Murga Masala", "price": "444.00 - 777.00 RS", "desc": "Special Murga Masala (Half/Full)", "tags": ["Non-Veg"], "img": "img/murga_masala.jpeg" },
+  { "id": 187, "cat": "NON_VEG_GRAVY", "name": "Indian Chicken Rarra", "price": "644.00 RS", "desc": "Spicy Indian Chicken Rarra", "tags": ["Non-Veg"], "img": "img/indian_chicken_rarra.jpeg" },
+  { "id": 188, "cat": "NON_VEG_GRAVY", "name": "Chicken Chatpata", "price": "355.00 RS", "desc": "Tangy and spicy Chicken Chatpata", "tags": ["Non-Veg"], "img": "img/chicken_chatpata.jpeg" },
+  { "id": 189, "cat": "NON_VEG_GRAVY", "name": "Chicken Lucknow", "price": "399.00 RS", "desc": "Lucknowi style Chicken gravy", "tags": ["Non-Veg"], "img": "img/chicken_lucknow.jpeg" },
+
+  
+  { "id": 190, "cat": "VEG_GRAVY", "name": "Chole Masala", "price": "220.00 RS", "desc": "Spicy and delicious Chole Masala", "tags": ["Veg"], "img": "img/chole_masala.jpeg" },
+  { "id": 191, "cat": "VEG_GRAVY", "name": "Aaloo Matar", "price": "220.00 RS", "desc": "Classic Aaloo Matar curry", "tags": ["Veg"], "img": "img/aaloo_matar.jpeg" },
+  { "id": 192, "cat": "VEG_GRAVY", "name": "Mix Veg Masala", "price": "220.00 RS", "desc": "Mixed vegetables cooked in rich spices", "tags": ["Veg"], "img": "img/mix_veg_masala.jpeg" },
+  { "id": 193, "cat": "VEG_GRAVY", "name": "Veg. Handi", "price": "280.00 RS", "desc": "Vegetable curry cooked in Handi style", "tags": ["Veg"], "img": "img/veg_handi.jpeg" },
+  { "id": 194, "cat": "VEG_GRAVY", "name": "Veg. Kadai", "price": "280.00 RS", "desc": "Mixed vegetables tossed in Kadai masala", "tags": ["Veg"], "img": "img/veg_kadai.jpeg" },
+  { "id": 195, "cat": "VEG_GRAVY", "name": "Paneer Handi", "price": "300.00 RS", "desc": "Paneer cooked in traditional Handi", "tags": ["Veg"], "img": "img/paneer_handi.jpeg" },
+  { "id": 196, "cat": "VEG_GRAVY", "name": "Paneer Kadai", "price": "300.00 RS", "desc": "Paneer cooked with bell peppers in Kadai", "tags": ["Veg"], "img": "img/paneer_kadai.jpeg" },
+  { "id": 197, "cat": "VEG_GRAVY", "name": "Veg. Kolhapuri (Spicy)", "price": "250.00 RS", "desc": "Authentic spicy Veg Kolhapuri", "tags": ["Veg"], "img": "img/veg_kolhapuri.jpeg" },
+  { "id": 198, "cat": "VEG_GRAVY", "name": "Paneer Kolhapuri", "price": "260.00 RS", "desc": "Spicy Paneer Kolhapuri", "tags": ["Veg"], "img": "img/paneer_kolhapuri.jpeg" },
+  { "id": 199, "cat": "VEG_GRAVY", "name": "Veg. Kofta", "price": "280.00 RS", "desc": "Vegetable dumplings in rich gravy", "tags": ["Veg"], "img": "img/veg_kofta.jpeg" },
+  { "id": 200, "cat": "VEG_GRAVY", "name": "Veg. Patiyala", "price": "300.00 RS", "desc": "Special Veg Patiyala", "tags": ["Veg"], "img": "img/veg_patiyala.jpeg" },
+  { "id": 201, "cat": "VEG_GRAVY", "name": "Veg. Hyderabadi", "price": "300.00 RS", "desc": "Rich and green Veg Hyderabadi", "tags": ["Veg"], "img": "img/veg_hyderabadi.jpeg" },
+  { "id": 202, "cat": "VEG_GRAVY", "name": "Paneer Tikka Masala", "price": "300.00 RS", "desc": "Roasted Paneer Tikka in masala gravy", "tags": ["Veg"], "img": "img/paneer_tikka_masala.jpeg" },
+  { "id": 203, "cat": "VEG_GRAVY", "name": "Mushroom Tikka Masala", "price": "300.00 RS", "desc": "Roasted Mushroom Tikka in masala gravy", "tags": ["Veg"], "img": "img/mushroom_tikka_masala.jpeg" },
+  { "id": 204, "cat": "VEG_GRAVY", "name": "Mushroom Handi", "price": "300.00 RS", "desc": "Mushroom cooked in Handi style", "tags": ["Veg"], "img": "img/mushroom_handi.jpeg" },
+  { "id": 205, "cat": "VEG_GRAVY", "name": "Paneer Butter Masala", "price": "320.00 RS", "desc": "Classic creamy Paneer Butter Masala", "tags": ["Veg"], "img": "img/paneer_butter_masala.jpeg" },
+  { "id": 206, "cat": "VEG_GRAVY", "name": "Paneer Hyderabadi", "price": "320.00 RS", "desc": "Rich and green Paneer Hyderabadi", "tags": ["Veg"], "img": "img/paneer_hyderabadi.jpeg" },
+  { "id": 207, "cat": "VEG_GRAVY", "name": "Paneer Kofta", "price": "320.00 RS", "desc": "Paneer dumplings in rich gravy", "tags": ["Veg"], "img": "img/paneer_kofta.jpeg" },
+  { "id": 208, "cat": "VEG_GRAVY", "name": "Veg. Kheema Masala", "price": "330.00 RS", "desc": "Minced vegetable Kheema Masala", "tags": ["Veg"], "img": "img/veg_kheema_masala.jpeg" },
+  { "id": 209, "cat": "VEG_GRAVY", "name": "Matar Paneer", "price": "220.00 RS", "desc": "Classic Matar Paneer", "tags": ["Veg"], "img": "img/matar_paneer.jpeg" },
+  { "id": 210, "cat": "VEG_GRAVY", "name": "Palak Paneer", "price": "200.00 RS", "desc": "Healthy Palak Paneer", "tags": ["Veg"], "img": "img/palak_paneer.jpeg" },
+  { "id": 211, "cat": "VEG_GRAVY", "name": "Stuff Shimla", "price": "220.00 RS", "desc": "Stuffed Capsicum (Shimla Mirch)", "tags": ["Veg"], "img": "img/stuff_shimla.jpeg" },
+  { "id": 212, "cat": "VEG_GRAVY", "name": "Stuff Tomato", "price": "220.00 RS", "desc": "Stuffed Tomato gravy", "tags": ["Veg"], "img": "img/stuff_tomato.jpeg" },
+  { "id": 213, "cat": "VEG_GRAVY", "name": "Paneer Kofta (Handwritten)", "price": "240.00 RS", "desc": "Paneer Kofta special", "tags": ["Veg"], "img": "img/paneer_kofta_handwritten.jpeg" },
+  { "id": 214, "cat": "VEG_GRAVY", "name": "Malai Kofta", "price": "260.00 RS", "desc": "Creamy and rich Malai Kofta", "tags": ["Veg"], "img": "img/malai_kofta.jpeg" },
+  { "id": 215, "cat": "VEG_GRAVY", "name": "Veg Sham Savera", "price": "300.00 RS", "desc": "Special Veg Sham Savera", "tags": ["Veg"], "img": "img/veg_sham_savera.jpeg" },
+  { "id": 216, "cat": "VEG_GRAVY", "name": "Paneer Lababdar", "price": "300.00 RS", "desc": "Rich Paneer Lababdar", "tags": ["Veg"], "img": "img/paneer_lababdar.jpeg" },
+  { "id": 217, "cat": "VEG_GRAVY", "name": "Paneer Pasanda", "price": "300.00 RS", "desc": "Stuffed Paneer Pasanda", "tags": ["Veg"], "img": "img/paneer_pasanda.jpeg" },
+  { "id": 218, "cat": "VEG_GRAVY", "name": "Paneer Chatpat", "price": "300.00 RS", "desc": "Tangy and spicy Paneer Chatpat", "tags": ["Veg"], "img": "img/paneer_chatpat.jpeg" },
+  { "id": 219, "cat": "VEG_GRAVY", "name": "Paneer Lucknow", "price": "300.00 RS", "desc": "Lucknowi style Paneer gravy", "tags": ["Veg"], "img": "img/paneer_lucknow.jpeg" },
+  { "id": 220, "cat": "VEG_GRAVY", "name": "Veg Divani Handi", "price": "320.00 RS", "desc": "Special Veg Divani Handi", "tags": ["Veg"], "img": "img/veg_divani_handi.jpeg" },
+
+
+  { "id": 221, "cat": "ROTI_BASKET", "name": "Wheat Roti", "price": "25.00 RS", "desc": "Healthy Wheat Roti", "tags": ["Veg"], "img": "img/wheat_roti.jpeg" },
+  { "id": 222, "cat": "ROTI_BASKET", "name": "Wheat Butter Roti", "price": "30.00 RS", "desc": "Wheat Roti with Butter", "tags": ["Veg"], "img": "img/wheat_butter_roti.jpeg" },
+  { "id": 223, "cat": "ROTI_BASKET", "name": "Chapati", "price": "15.00 RS", "desc": "Soft Chapati", "tags": ["Veg"], "img": "img/chapati.jpeg" },
+  { "id": 224, "cat": "ROTI_BASKET", "name": "Bhakari", "price": "25.00 RS", "desc": "Traditional Bhakari", "tags": ["Veg"], "img": "img/bhakari.jpeg" },
+  { "id": 225, "cat": "ROTI_BASKET", "name": "Junkha Bhakari", "price": "60.00 RS", "desc": "Authentic Junkha served with Bhakari", "tags": ["Veg"], "img": "img/junkha_bhakari.jpeg" },
+  { "id": 226, "cat": "ROTI_BASKET", "name": "Tandoori Roti", "price": "25.00 RS", "desc": "Tandoor baked Roti", "tags": ["Veg"], "img": "img/tandoori_roti.jpeg" },
+  { "id": 227, "cat": "ROTI_BASKET", "name": "Tandoori Butter Roti", "price": "30.00 RS", "desc": "Tandoor baked Roti with Butter", "tags": ["Veg"], "img": "img/tandoori_butter_roti.jpeg" },
+  { "id": 228, "cat": "ROTI_BASKET", "name": "Kulcha", "price": "30.00 RS", "desc": "Soft Kulcha", "tags": ["Veg"], "img": "img/kulcha.jpeg" },
+  { "id": 229, "cat": "ROTI_BASKET", "name": "Butter Kulcha", "price": "40.00 RS", "desc": "Soft Kulcha with Butter", "tags": ["Veg"], "img": "img/butter_kulcha.jpeg" },
+  { "id": 230, "cat": "ROTI_BASKET", "name": "Sada Naan", "price": "30.00 RS", "desc": "Plain Naan", "tags": ["Veg"], "img": "img/sada_naan.jpeg" },
+  { "id": 231, "cat": "ROTI_BASKET", "name": "Cheesy Roti", "price": "30.00 RS", "desc": "Cheese stuffed Roti", "tags": ["Veg"], "img": "img/cheesy_roti.jpeg" },
+  { "id": 232, "cat": "ROTI_BASKET", "name": "Cheesy Garlic Naan", "price": "70.00 RS", "desc": "Naan topped with Cheese and Garlic", "tags": ["Veg"], "img": "img/cheesy_garlic_naan.jpeg" },
+  { "id": 233, "cat": "ROTI_BASKET", "name": "Butter Naan", "price": "40.00 RS", "desc": "Classic Butter Naan", "tags": ["Veg"], "img": "img/butter_naan.jpeg" },
+  { "id": 234, "cat": "ROTI_BASKET", "name": "Garlic Naan Sada", "price": "50.00 RS", "desc": "Plain Garlic Naan", "tags": ["Veg"], "img": "img/garlic_naan_sada.jpeg" },
+  { "id": 235, "cat": "ROTI_BASKET", "name": "Butter Garlic Naan", "price": "60.00 RS", "desc": "Garlic Naan with Butter", "tags": ["Veg"], "img": "img/butter_garlic_naan.jpeg" },
+  { "id": 236, "cat": "ROTI_BASKET", "name": "Laccha Paratha", "price": "60.00 RS", "desc": "Flaky Laccha Paratha", "tags": ["Veg"], "img": "img/laccha_paratha.jpeg" },
+  { "id": 237, "cat": "ROTI_BASKET", "name": "Extra Butter", "price": "10.00 RS", "desc": "Side of Extra Butter", "tags": ["Veg"], "img": "img/extra_butter.jpeg" },
+  { "id": 238, "cat": "ROTI_BASKET", "name": "Aloo Paratha", "price": "150.00 RS", "desc": "Potato stuffed Paratha", "tags": ["Veg"], "img": "img/aloo_paratha.jpeg" },
+  { "id": 239, "cat": "ROTI_BASKET", "name": "Paneer Paratha", "price": "160.00 RS", "desc": "Paneer stuffed Paratha", "tags": ["Veg"], "img": "img/paneer_paratha.jpeg" },
+
+  { "id": 240, "cat": "WATER_COLD_DRINKS", "name": "Water", "price": "20.00 RS", "desc": "Bottled Drinking Water", "tags": ["Veg"], "img": "img/water.jpeg" },
+  { "id": 241, "cat": "WATER_COLD_DRINKS", "name": "Lassi", "price": "50.00 RS", "desc": "Sweet and thick Lassi", "tags": ["Veg"], "img": "img/lassi.jpeg" },
+  { "id": 242, "cat": "WATER_COLD_DRINKS", "name": "Taak", "price": "35.00 RS", "desc": "Refreshing Buttermilk (Taak)", "tags": ["Veg"], "img": "img/taak.jpeg" },
+  { "id": 243, "cat": "WATER_COLD_DRINKS", "name": "Solkadhi", "price": "60.00 RS", "desc": "Traditional Coastal Solkadhi", "tags": ["Veg"], "img": "img/solkadhi.jpeg" },
+  { "id": 244, "cat": "WATER_COLD_DRINKS", "name": "Masala Chaas", "price": "40.00 RS", "desc": "Spiced Buttermilk", "tags": ["Veg"], "img": "img/masala_chaas.jpeg" },
+
+  { "id": 245, "cat": "KUCH_MEETHA_HO_JAYE", "name": "Rabadi", "price": "60.00 RS", "desc": "Sweet and rich Rabadi", "tags": ["Veg"], "img": "img/rabadi.jpeg" },
+  { "id": 246, "cat": "KUCH_MEETHA_HO_JAYE", "name": "Caramel Custard", "price": "60.00 RS", "desc": "Classic Caramel Custard", "tags": ["Veg"], "img": "img/caramel_custard.jpeg" },
+  { "id": 247, "cat": "KUCH_MEETHA_HO_JAYE", "name": "Gulab Jamun (2 Pic.)", "price": "50.00 RS", "desc": "Sweet Gulab Jamun", "tags": ["Veg"], "img": "img/gulab_jamun.jpeg" },
+  { "id": 248, "cat": "KUCH_MEETHA_HO_JAYE", "name": "Fruit Custard", "price": "60.00 RS", "desc": "Fresh Fruit Custard", "tags": ["Veg"], "img": "img/fruit_custard.jpeg" },
+  { "id": 249, "cat": "KUCH_MEETHA_HO_JAYE", "name": "Basundi", "price": "60.00 RS", "desc": "Sweet and creamy Basundi", "tags": ["Veg"], "img": "img/basundi.jpeg" },
+
+  
+
+  { "id": 250, "cat": "BIRYANI_KA_SWAAD", "name": "Veg. Biryani", "price": "220.00 RS", "desc": "Authentic Veg Biryani", "tags": ["Veg"], "img": "img/veg_biryani.jpeg" },
+  { "id": 251, "cat": "BIRYANI_KA_SWAAD", "name": "Veg. Hyderabadi Biryani", "price": "240.00 RS", "desc": "Flavorful Veg Hyderabadi Biryani", "tags": ["Veg"], "img": "img/veg_hyderabadi_biryani.jpeg" },
+  { "id": 252, "cat": "BIRYANI_KA_SWAAD", "name": "Veg. Angara Biryani (Spicy)", "price": "240.00 RS", "desc": "Spicy Veg Angara Biryani", "tags": ["Veg"], "img": "img/veg_angara_biryani.jpeg" },
+  { "id": 253, "cat": "BIRYANI_KA_SWAAD", "name": "Veg. Pulao", "price": "200.00 RS", "desc": "Classic Veg Pulao", "tags": ["Veg"], "img": "img/veg_pulao.jpeg" },
+  { "id": 254, "cat": "BIRYANI_KA_SWAAD", "name": "Veg Lucknow Biryani", "price": "299.00 RS", "desc": "Lucknowi style Veg Biryani", "tags": ["Veg"], "img": "img/veg_lucknow_biryani.jpeg" },
+  { "id": 255, "cat": "BIRYANI_KA_SWAAD", "name": "Paneer Lucknow Biryani", "price": "299.00 RS", "desc": "Lucknowi style Paneer Biryani", "tags": ["Veg"], "img": "img/paneer_lucknow_biryani.jpeg" },
+  { "id": 256, "cat": "BIRYANI_KA_SWAAD", "name": "Veg Dubai Indian Khebas", "price": "299.00 RS", "desc": "Special Veg Dubai Indian Khebas", "tags": ["Veg"], "img": "img/veg_dubai_indian_khebas.jpeg" },
+  { "id": 257, "cat": "BIRYANI_KA_SWAAD", "name": "Veg Paneer Biryani", "price": "244.00 RS", "desc": "Special Veg Paneer Biryani", "tags": ["Veg"], "img": "img/veg_paneer_biryani.jpeg" },
+
+  { "id": 258, "cat": "NON_VEG_BIRYANI", "name": "Chicken Biryani", "price": "220.00 RS", "desc": "Classic Chicken Biryani", "tags": ["Non-Veg"], "img": "img/chicken_biryani.jpeg" },
+  { "id": 259, "cat": "NON_VEG_BIRYANI", "name": "Chicken Dum Biryani", "price": "240.00 RS", "desc": "Slow-cooked Chicken Dum Biryani", "tags": ["Non-Veg"], "img": "img/chicken_dum_biryani.jpeg" },
+  { "id": 260, "cat": "NON_VEG_BIRYANI", "name": "Chicken Hyderabadi Biryani", "price": "260.00 RS", "desc": "Rich Chicken Hyderabadi Biryani", "tags": ["Non-Veg"], "img": "img/chicken_hyderabadi_biryani.jpeg" },
+  { "id": 261, "cat": "NON_VEG_BIRYANI", "name": "Chicken Angara Briyani", "price": "260.00 RS", "desc": "Smoky Chicken Angara Biryani", "tags": ["Non-Veg"], "img": "img/chicken_angara_briyani.jpeg" },
+  { "id": 262, "cat": "NON_VEG_BIRYANI", "name": "Chicken Tikka Biryani", "price": "240.00 RS", "desc": "Roasted Chicken Tikka Biryani", "tags": ["Non-Veg"], "img": "img/chicken_tikka_biryani.jpeg" },
+  { "id": 263, "cat": "NON_VEG_BIRYANI", "name": "Chicken Seekh Biryani", "price": "280.00 RS", "desc": "Chicken Seekh Kebab Biryani", "tags": ["Non-Veg"], "img": "img/chicken_seekh_biryani.jpeg" },
+  { "id": 264, "cat": "NON_VEG_BIRYANI", "name": "Prawns Biryani", "price": "280.00 RS", "desc": "Flavorful Prawns Biryani", "tags": ["Non-Veg"], "img": "img/prawns_biryani.jpeg" },
+  { "id": 265, "cat": "NON_VEG_BIRYANI", "name": "Mutton Biryani", "price": "300.00 RS", "desc": "Classic Mutton Biryani", "tags": ["Non-Veg"], "img": "img/mutton_biryani.jpeg" },
+  { "id": 266, "cat": "NON_VEG_BIRYANI", "name": "Mutton Seekh Biryani", "price": "320.00 RS", "desc": "Mutton Seekh Kebab Biryani", "tags": ["Non-Veg"], "img": "img/mutton_seekh_biryani.jpeg" },
+  { "id": 267, "cat": "NON_VEG_BIRYANI", "name": "Chicken Lucknow Biryani", "price": "299.00 RS", "desc": "Lucknowi style Chicken Biryani", "tags": ["Non-Veg"], "img": "img/chicken_lucknow_biryani.jpeg" },
+  { "id": 268, "cat": "NON_VEG_BIRYANI", "name": "Dubai Indian Khebas", "price": "399.00 RS", "desc": "Special Non-Veg Dubai Indian Khebas", "tags": ["Non-Veg"], "img": "img/dubai_indian_khebas.jpeg" },
+
+  { "id": 269, "cat": "DAL_KI_DUNIYA", "name": "Dal Fry", "price": "160.00 RS", "desc": "Classic Dal Fry", "tags": ["Veg"], "img": "img/dal_fry.jpeg" },
+  { "id": 270, "cat": "DAL_KI_DUNIYA", "name": "Dal Tadka", "price": "180.00 RS", "desc": "Tempered Dal Tadka", "tags": ["Veg"], "img": "img/dal_tadka.jpeg" },
+  { "id": 271, "cat": "DAL_KI_DUNIYA", "name": "Dal Kolhapuri Spicy", "price": "170.00 RS", "desc": "Spicy Dal Kolhapuri", "tags": ["Veg"], "img": "img/dal_kolhapuri_spicy.jpeg" },
+  { "id": 272, "cat": "DAL_KI_DUNIYA", "name": "Dal Makhani", "price": "199.00 RS", "desc": "Creamy and rich Dal Makhani", "tags": ["Veg"], "img": "img/dal_makhani.jpeg" },
+
+  { "id": 273, "cat": "RICE_ITEMS", "name": "Steam Rice", "price": "100.00 RS", "desc": "Plain Steamed Rice", "tags": ["Veg"], "img": "img/steam_rice.jpeg" },
+  { "id": 274, "cat": "RICE_ITEMS", "name": "Jeera Rice", "price": "120.00 RS", "desc": "Cumin flavored Jeera Rice", "tags": ["Veg"], "img": "img/jeera_rice.jpeg" },
+  { "id": 275, "cat": "RICE_ITEMS", "name": "Dal Khichadi", "price": "160.00 RS", "desc": "Comforting Dal Khichadi", "tags": ["Veg"], "img": "img/dal_khichadi.jpeg" },
+  { "id": 276, "cat": "RICE_ITEMS", "name": "Dal Khichadi Tadka", "price": "199.00 RS", "desc": "Tempered Dal Khichadi Tadka", "tags": ["Veg"], "img": "img/dal_khichadi_tadka.jpeg" },
+  { "id": 277, "cat": "RICE_ITEMS", "name": "Masala Dal Khichadi", "price": "220.00 RS", "desc": "Spicy Masala Dal Khichadi", "tags": ["Veg"], "img": "img/masala_dal_khichadi.jpeg" },
+
+  { "id": 278, "cat": "KHANE_KE_SATH", "name": "Rosted Papad", "price": "30.00 RS", "desc": "Plain Roasted Papad", "tags": ["Veg"], "img": "img/rosted_papad.jpeg" },
+  { "id": 279, "cat": "KHANE_KE_SATH", "name": "Fry Papad", "price": "40.00 RS", "desc": "Deep Fried Papad", "tags": ["Veg"], "img": "img/fry_papad.jpeg" },
+  { "id": 280, "cat": "KHANE_KE_SATH", "name": "Masala Papad", "price": "60.00 RS", "desc": "Papad topped with spicy onion-tomato mix", "tags": ["Veg"], "img": "img/masala_papad.jpeg" },
+  { "id": 281, "cat": "KHANE_KE_SATH", "name": "Veg. Raita", "price": "100.00 RS", "desc": "Mixed Vegetable Raita", "tags": ["Veg"], "img": "img/veg_raita.jpeg" },
+  { "id": 282, "cat": "KHANE_KE_SATH", "name": "Boondi Raita", "price": "100.00 RS", "desc": "Crispy Boondi Raita", "tags": ["Veg"], "img": "img/boondi_raita.jpeg" },
+  { "id": 283, "cat": "KHANE_KE_SATH", "name": "Green Salad", "price": "120.00 RS", "desc": "Fresh Green Salad", "tags": ["Veg"], "img": "img/green_salad.jpeg" },
+
+
+  { "id": 284, "cat": "CHINESE_VEG_RICE", "name": "Veg. Fried Rice", "price": "180.00 RS", "desc": "Classic Veg Fried Rice", "tags": ["Veg"], "img": "img/veg_fried_rice.jpeg" },
+  { "id": 285, "cat": "CHINESE_VEG_RICE", "name": "Veg. Schezwan Rice", "price": "200.00 RS", "desc": "Spicy Veg Schezwan Rice", "tags": ["Veg"], "img": "img/veg_schezwan_rice.jpeg" },
+  { "id": 286, "cat": "CHINESE_VEG_RICE", "name": "Veg. Singapori Rice", "price": "220.00 RS", "desc": "Veg Singapori Rice", "tags": ["Veg"], "img": "img/veg_singapori_rice.jpeg" },
+  { "id": 287, "cat": "CHINESE_VEG_RICE", "name": "Veg. Hongkong Rice", "price": "240.00 RS", "desc": "Veg Hongkong Rice", "tags": ["Veg"], "img": "img/veg_hongkong_rice.jpeg" },
+  { "id": 288, "cat": "CHINESE_VEG_RICE", "name": "Veg. Manchurian Rice (+Gravy)", "price": "280.00 RS", "desc": "Veg Manchurian Rice served with Gravy", "tags": ["Veg"], "img": "img/veg_manchurian_rice.jpeg" },
+  { "id": 289, "cat": "CHINESE_VEG_RICE", "name": "Veg. Triple Rice", "price": "280.00 RS", "desc": "Veg Triple Fried Rice", "tags": ["Veg"], "img": "img/veg_triple_rice.jpeg" },
+  { "id": 290, "cat": "CHINESE_VEG_RICE", "name": "Veg. Combination Rice", "price": "240.00 RS", "desc": "Veg Combination Rice", "tags": ["Veg"], "img": "img/veg_combination_rice.jpeg" },
+  { "id": 291, "cat": "CHINESE_VEG_RICE", "name": "Veg. Burnt Garlic Rice", "price": "250.00 RS", "desc": "Flavorful Veg Burnt Garlic Rice", "tags": ["Veg"], "img": "img/veg_burnt_garlic_rice.jpeg" },
+  { "id": 292, "cat": "CHINESE_VEG_RICE", "name": "Veg. Mix Fried Rice", "price": "235.00 RS", "desc": "Mixed Veg Fried Rice", "tags": ["Veg"], "img": "img/veg_mix_fried_rice.jpeg" },
+  { "id": 293, "cat": "CHINESE_VEG_RICE", "name": "Paneer Fried Rice", "price": "235.00 RS", "desc": "Fried Rice with Paneer chunks", "tags": ["Veg"], "img": "img/paneer_fried_rice.jpeg" },
+  { "id": 294, "cat": "CHINESE_VEG_RICE", "name": "Mushroom Fried Rice", "price": "235.00 RS", "desc": "Fried Rice with Mushrooms", "tags": ["Veg"], "img": "img/mushroom_fried_rice.jpeg" },
+  { "id": 295, "cat": "CHINESE_VEG_RICE", "name": "Veg. Jeera Fried Rice", "price": "300.00 RS", "desc": "Jeera flavored Veg Fried Rice", "tags": ["Veg"], "img": "img/veg_jeera_fried_rice.jpeg" },
+  { "id": 296, "cat": "CHINESE_VEG_RICE", "name": "Veg Malaysian Rice", "price": "299.00 RS", "desc": "Special Veg Malaysian Rice", "tags": ["Veg"], "img": "img/veg_malaysian_rice.jpeg" },
+
+  { "id": 297, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Hakka Noodles", "price": "200.00 RS", "desc": "Classic Veg Hakka Noodles", "tags": ["Veg"], "img": "img/veg_hakka_noodles.jpeg" },
+  { "id": 298, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Schezwan Noodles", "price": "240.00 RS", "desc": "Spicy Veg Schezwan Noodles", "tags": ["Veg"], "img": "img/veg_schezwan_noodles.jpeg" },
+  { "id": 299, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Singapori Noodles", "price": "250.00 RS", "desc": "Veg Singapori Noodles", "tags": ["Veg"], "img": "img/veg_singapori_noodles.jpeg" },
+  { "id": 300, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Hongkong Noodles", "price": "250.00 RS", "desc": "Veg Hongkong Noodles", "tags": ["Veg"], "img": "img/veg_hongkong_noodles.jpeg" },
+  { "id": 301, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Triple Noodles", "price": "280.00 RS", "desc": "Veg Triple Noodles", "tags": ["Veg"], "img": "img/veg_triple_noodles.jpeg" },
+  { "id": 302, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Manchurian Noo. (+Gravy)", "price": "300.00 RS", "desc": "Veg Manchurian Noodles with Gravy", "tags": ["Veg"], "img": "img/veg_manchurian_noo.jpeg" },
+  { "id": 303, "cat": "CHINESE_VEG_NOODLES", "name": "Veg. Burnt Garlic Noodles", "price": "260.00 RS", "desc": "Veg Burnt Garlic Noodles", "tags": ["Veg"], "img": "img/veg_burnt_garlic_noodles.jpeg" },
+  { "id": 304, "cat": "CHINESE_VEG_NOODLES", "name": "Mushroom Noodles", "price": "240.00 RS", "desc": "Mushroom Hakka Noodles", "tags": ["Veg"], "img": "img/mushroom_noodles.jpeg" },
+  { "id": 305, "cat": "CHINESE_VEG_NOODLES", "name": "Mushroom Schezwan Noodles", "price": "260.00 RS", "desc": "Spicy Mushroom Schezwan Noodles", "tags": ["Veg"], "img": "img/mushroom_schezwan_noodles.jpeg" },
+
+  { "id": 306, "cat": "CHINESE_NON_VEG_RICE", "name": "Chicken Malaysian Rice", "price": "350.00 RS", "desc": "Special Chicken Malaysian Rice", "tags": ["Non-Veg"], "img": "img/chicken_malaysian_rice.jpeg" },
+  { "id": 307, "cat": "CHINESE_NON_VEG_RICE", "name": "Peking Rice", "price": "199.00 RS", "desc": "Peking style fried rice", "tags": ["Non-Veg"], "img": "img/peking_rice.jpeg" },
+  { "id": 308, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Fried Rice", "price": "199.00 RS", "desc": "Classic Chicken Fried Rice", "tags": ["Non-Veg"], "img": "img/chi_fried_rice.jpeg" },
+  { "id": 309, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Schezwan Rice", "price": "220.00 RS", "desc": "Spicy Chicken Schezwan Rice", "tags": ["Non-Veg"], "img": "img/chi_schezwan_rice.jpeg" },
+  { "id": 310, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Singapori Rice", "price": "240.00 RS", "desc": "Chicken Singapori Rice", "tags": ["Non-Veg"], "img": "img/chi_singapori_rice.jpeg" },
+  { "id": 311, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Hongkong Rice", "price": "240.00 RS", "desc": "Chicken Hongkong Rice", "tags": ["Non-Veg"], "img": "img/chi_hongkong_rice.jpeg" },
+  { "id": 312, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Manchurian Rice", "price": "260.00 RS", "desc": "Chicken Manchurian Rice", "tags": ["Non-Veg"], "img": "img/chi_manchurian_rice.jpeg" },
+  { "id": 313, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Triple Rice", "price": "260.00 RS", "desc": "Chicken Triple Rice", "tags": ["Non-Veg"], "img": "img/chi_triple_rice.jpeg" },
+  { "id": 314, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Burnt Garlic Rice", "price": "260.00 RS", "desc": "Chicken Burnt Garlic Rice", "tags": ["Non-Veg"], "img": "img/chi_burnt_garlic_rice.jpeg" },
+  { "id": 315, "cat": "CHINESE_NON_VEG_RICE", "name": "Chi. Combination Rice", "price": "260.00 RS", "desc": "Chicken Combination Rice", "tags": ["Non-Veg"], "img": "img/chi_combination_rice.jpeg" },
+  { "id": 316, "cat": "CHINESE_NON_VEG_RICE", "name": "Chicken Shanghai Rice", "price": "240.00 RS", "desc": "Chicken Shanghai Rice", "tags": ["Non-Veg"], "img": "img/chicken_shanghai_rice.jpeg" },
+  { "id": 317, "cat": "CHINESE_NON_VEG_RICE", "name": "Egg Fried Rice", "price": "180.00 RS", "desc": "Egg Fried Rice", "tags": ["Non-Veg"], "img": "img/egg_fried_rice.jpeg" },
+  { "id": 318, "cat": "CHINESE_NON_VEG_RICE", "name": "Egg Triple Rice", "price": "200.00 RS", "desc": "Egg Triple Rice", "tags": ["Non-Veg"], "img": "img/egg_triple_rice.jpeg" },
+  { "id": 319, "cat": "CHINESE_NON_VEG_RICE", "name": "Egg Schezwan Rice", "price": "200.00 RS", "desc": "Spicy Egg Schezwan Rice", "tags": ["Non-Veg"], "img": "img/egg_schezwan_rice.jpeg" },
+  { "id": 320, "cat": "CHINESE_NON_VEG_RICE", "name": "Prawn Fried Rice", "price": "255.00 RS", "desc": "Prawns Fried Rice", "tags": ["Non-Veg"], "img": "img/prawn_fried_rice.jpeg" },
+  { "id": 321, "cat": "CHINESE_NON_VEG_RICE", "name": "Prawns Schezwan Rice", "price": "275.00 RS", "desc": "Spicy Prawns Schezwan Rice", "tags": ["Non-Veg"], "img": "img/prawns_schezwan_rice.jpeg" },
+  { "id": 322, "cat": "CHINESE_NON_VEG_RICE", "name": "Prawns Triple Rice", "price": "299.00 RS", "desc": "Prawns Triple Rice", "tags": ["Non-Veg"], "img": "img/prawns_triple_rice.jpeg" },
+  { "id": 323, "cat": "CHINESE_NON_VEG_RICE", "name": "Crispy Fried Rice", "price": "299.00 RS", "desc": "Crispy Fried Rice", "tags": ["Non-Veg"], "img": "img/crispy_fried_rice.jpeg" },
+  { "id": 324, "cat": "CHINESE_NON_VEG_RICE", "name": "Khepsa Rice (Half)", "price": "799.00 RS", "desc": "Half portion of Special Khepsa Rice", "tags": ["Non-Veg"], "img": "img/khepsa_rice_half.jpeg" },
+  { "id": 325, "cat": "CHINESE_NON_VEG_RICE", "name": "Khepsa Rice (Full)", "price": "1355.00 RS", "desc": "Full portion of Special Khepsa Rice", "tags": ["Non-Veg"], "img": "img/khepsa_rice_full.jpeg" },
+
+  { "id": 326, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Hakka Noodles", "price": "199.00 RS", "desc": "Chicken Hakka Noodles", "tags": ["Non-Veg"], "img": "img/chi_hakka_noodles.jpeg" },
+  { "id": 327, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Schezwan Noodles", "price": "220.00 RS", "desc": "Spicy Chicken Schezwan Noodles", "tags": ["Non-Veg"], "img": "img/chi_schezwan_noodles.jpeg" },
+  { "id": 328, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Singapori Noodles", "price": "240.00 RS", "desc": "Chicken Singapori Noodles", "tags": ["Non-Veg"], "img": "img/chi_singapori_noodles.jpeg" },
+  { "id": 329, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Hongkong Noodles", "price": "240.00 RS", "desc": "Chicken Hongkong Noodles", "tags": ["Non-Veg"], "img": "img/chi_hongkong_noodles.jpeg" },
+  { "id": 330, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Triple Noodles", "price": "280.00 RS", "desc": "Chicken Triple Noodles", "tags": ["Non-Veg"], "img": "img/chi_triple_noodles.jpeg" },
+  { "id": 331, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Burnt Garlic Noodles", "price": "260.00 RS", "desc": "Chicken Burnt Garlic Noodles", "tags": ["Non-Veg"], "img": "img/chi_burnt_garlic_noodles.jpeg" },
+  { "id": 332, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chi. Prawns Sch. Noodles", "price": "280.00 RS", "desc": "Prawns Schezwan Noodles", "tags": ["Non-Veg"], "img": "img/chi_prawns_sch_noodles.jpeg" },
+  { "id": 333, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Egg Noodles", "price": "199.00 RS", "desc": "Egg Hakka Noodles", "tags": ["Non-Veg"], "img": "img/egg_noodles.jpeg" },
+  { "id": 334, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Egg Schezwan Noodles", "price": "200.00 RS", "desc": "Spicy Egg Schezwan Noodles", "tags": ["Non-Veg"], "img": "img/egg_schezwan_noodles.jpeg" },
+  { "id": 335, "cat": "CHINESE_NON_VEG_NOODLES", "name": "Chicken Malaysian Noodles", "price": "299.00 RS", "desc": "Special Chicken Malaysian Noodles", "tags": ["Non-Veg"], "img": "img/chicken_malaysian_noodles.jpeg" },
+
+    
+
+
+  
+ 
+]     
+        // Cart functionality
+        let cart = [];
+        let deliveryType = 'restaurant'; // Default to restaurant
+        const cartButton = document.getElementById('cartButton');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartEmpty = document.getElementById('cartEmpty');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const clearCart = document.getElementById('clearCart');
+        const whatsappOrder = document.getElementById('whatsappOrder');
+        const addAnotherItem = document.getElementById('addAnotherItem');
+        const customerDetailsSummary = document.getElementById('customerDetailsSummary');
+
+        // Delivery option selection
+        function selectDeliveryOption(type) {
+            deliveryType = type;
+
+            // Update button states
+            document.getElementById('restaurantOption').classList.toggle('active', type === 'restaurant');
+            document.getElementById('homeDeliveryOption').classList.toggle('active', type === 'home');
+
+            // Show/hide forms
+            document.getElementById('restaurantForm').classList.toggle('active', type === 'restaurant');
+            document.getElementById('homeDeliveryForm').classList.toggle('active', type === 'home');
+
+            // Update details summary
+            updateCustomerDetailsSummary();
+        }
+
+        // Update customer details summary
+        function updateCustomerDetailsSummary() {
+            let summaryHTML = '';
+            let showSummary = false;
+
+            if (deliveryType === 'restaurant') {
+                const tableNumber = document.getElementById('tableNumber').value.trim();
+
+                if (tableNumber) {
+                    showSummary = true;
+                    summaryHTML = `
+            <div class="summary-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12v12M15 12v12M5 12l-2 9h18l-2-9M5 12V8c0-1.105.895-2 2-2h10c1.105 0 2 .895 2 2v4"/>
+                <circle cx="12" cy="6" r="2"/>
+              </svg>
+              Restaurant Order
+            </div>
+            <div class="summary-details">
+              <div><strong>Type:</strong> Dine-in</div>
+              <div><strong>Table Number:</strong> ${tableNumber}</div>
+            </div>
+          `;
+                }
+            } else {
+                const name = document.getElementById('customerName').value.trim();
+                const mobile = document.getElementById('customerMobile').value.trim();
+                const address = document.getElementById('customerAddress').value.trim();
+
+                if (name || mobile || address) {
+                    showSummary = true;
+                    summaryHTML = `
+            <div class="summary-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+              Delivery Order
+            </div>
+            <div class="summary-details">
+              <div><strong>Type:</strong> Home Delivery</div>
+              ${name ? `<div><strong>Name:</strong> ${name}</div>` : ''}
+              ${mobile ? `<div><strong>Mobile:</strong> ${mobile}</div>` : ''}
+              ${address ? `<div><strong>Address:</strong> ${address}</div>` : ''}
+            </div>
+          `;
+                }
+            }
+
+            if (showSummary) {
+                customerDetailsSummary.innerHTML = summaryHTML;
+                customerDetailsSummary.classList.add('active');
+            } else {
+                customerDetailsSummary.classList.remove('active');
+            }
+        }
+
+        // Toggle cart modal
+        cartButton.addEventListener('click', () => {
+            cartModal.classList.add('open');
+            updateCustomerDetailsSummary();
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('open');
+        });
+
+        // Add to cart function with animation
+        function addToCart(item, button) {
+            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1
+                });
+            }
+
+            updateCart();
+
+            // Animation effect
+            button.classList.add('adding');
+            button.innerHTML = 'Adding...';
+
+            setTimeout(() => {
+                button.classList.remove('adding');
+                button.classList.add('added');
+                button.innerHTML = '✓ Added';
+
+                setTimeout(() => {
+                    button.classList.remove('added');
+                    button.innerHTML = 'Add to Cart';
+                }, 1000);
+            }, 500);
+        }
+
+        // Remove from cart function
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCart();
+        }
+
+        // Update quantity function
+        function updateQuantity(itemId, change) {
+            const item = cart.find(item => item.id === itemId);
+
+            if (item) {
+                item.quantity += change;
+
+                if (item.quantity <= 0) {
+                    removeFromCart(itemId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update cart items
+            if (cart.length === 0) {
+                cartEmpty.style.display = 'block';
+                cartItems.innerHTML = '';
+            } else {
+                cartEmpty.style.display = 'none';
+
+                let itemsHTML = '';
+                let totalAmount = 0;
+
+                cart.forEach(item => {
+                    const price = parseInt(item.price.replace('₹', ''));
+                    const itemTotal = price * item.quantity;
+                    totalAmount += itemTotal;
+
+                    itemsHTML += `
+            <div class="cart-item">
+              <div class="item-info">
+                <div class="item-name">${item.name}</div>
+                <div class="item-price">${item.price}</div>
+              </div>
+              <div class="item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span class="quantity">${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                <button class="remove-item" onclick="removeFromCart(${item.id})">×</button>
+              </div>
+            </div>
+          `;
+                });
+
+                cartItems.innerHTML = itemsHTML;
+                cartTotal.textContent = `₹${totalAmount}`;
+            }
+        }
+
+        // Clear cart
+        clearCart.addEventListener('click', () => {
+            cart = [];
+            updateCart();
+        });
+
+        // Add another item button functionality
+        addAnotherItem.addEventListener('click', () => {
+            cartModal.classList.remove('open');
+            
+            // Scroll to top of menu
+            window.scrollTo({
+                top: document.querySelector('.menu-head').offsetTop - 20,
+                behavior: 'smooth'
+            });
+            
+            // Focus on search to help user find items
+            setTimeout(() => {
+                document.getElementById('search').focus();
+            }, 500);
+        });
+
+        // WhatsApp order function with customer details
+        whatsappOrder.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            // Validate details based on delivery type
+            let validationPassed = true;
+            let validationMessage = '';
+
+            if (deliveryType === 'restaurant') {
+                const tableNumber = document.getElementById('tableNumber').value.trim();
+
+                if (!tableNumber) {
+                    validationPassed = false;
+                    validationMessage = 'Please enter your table number';
+                }
+            } else {
+                const customerName = document.getElementById('customerName').value.trim();
+                const customerMobile = document.getElementById('customerMobile').value.trim();
+                const customerAddress = document.getElementById('customerAddress').value.trim();
+
+                if (!customerName || !customerMobile || !customerAddress) {
+                    validationPassed = false;
+                    validationMessage = 'Please fill in all delivery details (Name, Mobile, Address)';
+                }
+            }
+
+            if (!validationPassed) {
+                alert(validationMessage);
+                return;
+            }
+
+            let message = `Hello! I would like to place an order:\n\n`;
+
+            // Add delivery details
+            if (deliveryType === 'restaurant') {
+                const tableNumber = document.getElementById('tableNumber').value.trim();
+
+                message += `**Delivery Type:** Dine-in\n`;
+                message += `**Table Number:** ${tableNumber}\n\n`;
+            } else {
+                const customerName = document.getElementById('customerName').value.trim();
+                const customerMobile = document.getElementById('customerMobile').value.trim();
+                const customerAddress = document.getElementById('customerAddress').value.trim();
+
+                message += `**Delivery Type:** Home Delivery\n`;
+                message += `**Name:** ${customerName}\n`;
+                message += `**Mobile:** ${customerMobile}\n`;
+                message += `**Address:** ${customerAddress}\n\n`;
+            }
+
+            message += `**Order Details:**\n`;
+
+            cart.forEach(item => {
+                message += `• ${item.name} - ${item.quantity} x ${item.price}\n`;
+            });
+
+            const totalAmount = cart.reduce((sum, item) => {
+                const price = parseInt(item.price.replace('₹', ''));
+                return sum + (price * item.quantity);
+            }, 0);
+
+            message += `\n**Total Amount:** ₹${totalAmount}\n\n`;
+            message += `Thank you!`;
+
+            // Encode the message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/919960465169?text=${encodedMessage}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, '_blank');
+
+            // Close cart modal after order
+            setTimeout(() => {
+                cartModal.classList.remove('open');
+            }, 1000);
+        });
+
+        // Render menu items
+        function renderMenuItems(items) {
+            const menuGrid = document.getElementById('menuGrid');
+
+            if (items.length === 0) {
+                menuGrid.innerHTML = '<p style="text-align:center;color:var(--muted);grid-column:1/-1;padding:40px 20px">No items found</p>';
+                return;
+            }
+
+            menuGrid.innerHTML = items.map(item => `
+        <div class="card" data-cat="${item.cat}">
+          <div class="card-header">
+            <div class="thumb">
+              <img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDMpIi8+CjxwYXRoIGQ9Ik03MCA4MEgxMTBNODAgNzBWOTBNNjUgOTVIMTA1TTk1IDY1VjEwNU02NSA2NVYxMDVNNzUgNzVIOThNNzUgODVIOThNNzUgOTVIOThNNzUgMTA1SDk4TTY1IDc1SDcyTTY1IDg1SDcyTTY1IDk1SDcyTTY1IDEwNUg3Mk0xMDggNzVIMTE1TTEwOCA4NUgxMTVNMTA4IDk1SDExNU0xMDggMTA1SDExNSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+'">
+            </div>
+            <div class="card-info">
+              <h3 class="dish">${item.name}</h3>
+              <p class="desc">${item.desc}</p>
+              <div class="tags">
+                ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="price">${item.price}</div>
+            <button class="btn-primary" onclick="addToCart(${JSON.stringify(item).replace(/"/g, '&quot;')}, this)">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+        }
+
+        // Filter menu items by category
+        function filterByCategory(category) {
+            if (category === 'all') {
+                renderMenuItems(data);
+            } else {
+                const filteredItems = data.filter(item => item.cat === category);
+                renderMenuItems(filteredItems);
+            }
+        }
+
+        // Search functionality
+        function searchItems(query) {
+            const filteredItems = data.filter(item =>
+                item.name.toLowerCase().includes(query.toLowerCase()) ||
+                item.desc.toLowerCase().includes(query.toLowerCase()) ||
+                item.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+            );
+            renderMenuItems(filteredItems);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set default delivery option
+            selectDeliveryOption('restaurant');
+
+            // Render menu items
+            renderMenuItems(data);
+
+            // Tab functionality
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    filterByCategory(tab.dataset.cat);
+                });
+            });
+
+            // Search functionality
+            document.getElementById('search').addEventListener('input', (e) => {
+                searchItems(e.target.value);
+            });
+
+            // Update details summary when form inputs change
+            document.getElementById('tableNumber').addEventListener('input', updateCustomerDetailsSummary);
+            document.getElementById('customerName').addEventListener('input', updateCustomerDetailsSummary);
+            document.getElementById('customerMobile').addEventListener('input', updateCustomerDetailsSummary);
+            document.getElementById('customerAddress').addEventListener('input', updateCustomerDetailsSummary);
+        });
+
+        // Make functions available globally
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.updateQuantity = updateQuantity;
+        window.selectDeliveryOption = selectDeliveryOption;
+    </script>
+</body>
+
+</html>
